@@ -1,0 +1,27 @@
+a.brand-name {
+  text-align: center;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 100;
+}
+span.sub-name {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+table#datatablesSimple tr td:last-child {
+  display: flex;
+  justify-content: space-evenly;
+}
+table#datatablesSimple tr td:last-child a{
+  text-decoration: none !important;
+}
+
+@media only screen and (max-width: 600px) {
+  table#datatablesSimple tr td:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
