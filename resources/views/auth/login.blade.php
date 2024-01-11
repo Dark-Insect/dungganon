@@ -98,5 +98,15 @@
     }
 </style>
 @endif
+@if (auth()->user()->role === "admin")
+<style>
+    #my-form{
+        display: none !important;
+    }
+    .hide-me{
+        display: none !important;
+    }
+</style>
+@endif
 @endauth
 @endsection
