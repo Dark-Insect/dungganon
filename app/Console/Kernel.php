@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +14,20 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // First Scheduled
-        $schedule->command('app:member-notifications')->everySecond();
+        $setting = DB::table('email_setting')->first();
+
+        switch($setting->mail_schedule)
+        {
+            case "every_minute":
+                $schedule->command('app:member-notifications')->everyMinute();
+            case "every_day":
+                $schedule->command('app:member-notifications')->daily();
+            case "every_week":
+                $schedule->command('app:member-notifications')->weekly();
+            case "every_month":
+                $schedule->command('app:member-notifications')->monthly();
+        }
+        
     }
 
     /**

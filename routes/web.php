@@ -2,6 +2,7 @@
 use App\Http\Controllers\admin\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\MemberReminderController;
+use App\Http\Controllers\member\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/template', function () {
-    return view('email.MemberEmailNotificationsTemplate');
+    return view('email.MemberEmailViewTemplate');
 });
 
 // ADMIN DASHBOARD
@@ -30,8 +31,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 });
 
 // MEMBER DASHBOARD
-Route::prefix('member')->name('member.')->group(function () {
-    Route::get('/dashboard', [AdminController::class,'index'])->name('admin-dashboard');
+Route::prefix('member')->name('member.')->middleware('auth')->group(function () {
+    Route::resource('/notifications', MemberController::class,['names' => 'mail']);
 });
 
 Auth::routes();

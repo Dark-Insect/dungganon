@@ -30,6 +30,8 @@ class MemberNotifications extends Command
      */
     public function handle()
     {
+        $setting = DB::table('email_setting')->first();
+
         $today = Carbon::now();
         $formattedDate = $today->format('F d, Y l');
 
@@ -46,7 +48,17 @@ class MemberNotifications extends Command
                 $result = Mail::to($email)->send(new MemberEmailTemplate([
                     'name' => $firstName . " " . $lastName,
                     'today' => $formattedDate,
+                    'subject' => $setting->mail_subject,
+                    'title' => $setting->mail_title
                 ]));
+
+                DB::table('sent_mail')->insert([
+                    'email_id' => 0,
+                    'user_id' => $user->id,
+                    'is_seen' => 0,
+                    'date_sent' => $today,
+                    'date_received' => $today
+                ]);
 
                 $this->info('Email sent successfully to ' . $firstName);
             }

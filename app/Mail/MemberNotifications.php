@@ -14,6 +14,8 @@ class MemberNotifications extends Mailable
     use Queueable, SerializesModels;
     public $name;
     public $today;
+    public $subject;
+    public $title;
     /**
      * Create a new message instance.
      */
@@ -21,6 +23,8 @@ class MemberNotifications extends Mailable
     {
         $this->name = $data['name'];
         $this->today = $data['today'];
+        $this->subject = $data['subject'];
+        $this->title = $data['title'];
     }
 
     /**
@@ -29,7 +33,7 @@ class MemberNotifications extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Reminders',
+            subject: $this->subject,
         );
     }
 

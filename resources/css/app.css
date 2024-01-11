@@ -24,4 +24,7 @@ table#datatablesSimple tr td:last-child a{
     flex-direction: column;
     gap: 10px;
   }
+  table#datatablesSimple tr form button{
+    width: 100%;
+  }
 }

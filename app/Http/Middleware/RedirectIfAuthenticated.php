@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
                 if (auth()->user()->role === 'admin') {
                     return redirect(route('admin.member.index')); // Redirect to admin dashboard
                 } else {
-                    return redirect(route('user.dashboard')); // Redirect to user dashboard
+                    return redirect(route('member.mail.index')); // Redirect to user dashboard
                 }
             }
         }

@@ -5,12 +5,29 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                @auth
+                    @if (auth()->user()->role === "member")
+                        <div class="card-header text-center">404</div>
+                    @endif
+                    @if (auth()->user()->role === "admin")
+                        <div class="card-header text-center">404</div>
+                    @endif
+                @endauth
+                <div class="card-header hide-me">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    @auth
+                        @if (auth()->user()->role === "member")
+                            <h2 class="text-center">Opps, please go back.</h2>
+                            <p class="text-center"><a href="{{ route('member.mail.index') }}">Dashboard</a></p>
+                        @endif
+                        @if (auth()->user()->role === "admin")
+                            <h2 class="text-center">Opps, please go back.</h2>
+                            <p class="text-center"><a href="{{ route('admin.member.index') }}">Dashboard</a></p>
+                        @endif
+                    @endauth
+                    <form id="my-form" method="POST" action="{{ route('login') }}">
                         @csrf
-
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
@@ -70,4 +87,16 @@
         </div>
     </div>
 </div>
+@auth
+@if (auth()->user()->role === "member")
+<style>
+    #my-form{
+        display: none !important;
+    }
+    .hide-me{
+        display: none !important;
+    }
+</style>
+@endif
+@endauth
 @endsection
