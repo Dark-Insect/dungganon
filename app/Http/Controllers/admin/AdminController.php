@@ -40,7 +40,8 @@ class AdminController extends Controller
             'email' => $data['txt-email'],
             'phone' => $data['txt-phone'],
             'password' => Hash::make($data['txt-cpass']),
-            'role' => 'member'
+            'role' => 'member',
+            'is_active' => true
         ]);
 
         session()->flash('success', 'Successfully registered '.$fullname.' as a new member.');
