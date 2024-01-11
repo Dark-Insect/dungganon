@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\MemberNotifications as MemberEmailTemplate;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Exception;
 
 class MemberNotifications extends Command
 {
@@ -45,12 +46,18 @@ class MemberNotifications extends Command
                 $lastName = $parts[0];
                 $firstName = $parts[1];
                 
-                $result = Mail::to($email)->send(new MemberEmailTemplate([
-                    'name' => $firstName . " " . $lastName,
-                    'today' => $formattedDate,
-                    'subject' => $setting->mail_subject,
-                    'title' => $setting->mail_title
-                ]));
+                try {
+                    $result = Mail::to($email)->send(new MemberEmailTemplate([
+                        'name' => $firstName . " " . $lastName,
+                        'today' => $formattedDate,
+                        'subject' => $setting->mail_subject,
+                        'title' => $setting->mail_title
+                    ]));
+                    $this->info('Email sent successfully to ' . $firstName);
+                } catch (Exception $e) {
+                    // Handle the exception
+                    $this->info('Email failed sending for ' . $firstName);
+                }
 
                 DB::table('sent_mail')->insert([
                     'email_id' => 0,
@@ -59,8 +66,6 @@ class MemberNotifications extends Command
                     'date_sent' => $today,
                     'date_received' => $today
                 ]);
-
-                $this->info('Email sent successfully to ' . $firstName);
             }
         }
     }
