@@ -27,4 +27,8 @@ table#datatablesSimple tr td:last-child a{
   table#datatablesSimple tr form button{
     width: 100%;
   }
+  .datatable-search{
+    margin-top: 15px;
+    width: 100%;
+  }
 }
