@@ -17,8 +17,8 @@ class CreateDefaultAdminCreds extends Seeder
         //Create Admin
         User::create([
             'name' => 'admin',
-            'phone' => '+639770231063',
-            'email' => 'johndoe@example.com',
+            'phone' => '+639670231066',
+            'email' => 'admin@admin.com',
             'password' => Hash::make('admin'),
             'role' => 'admin',
             'is_active' => 0

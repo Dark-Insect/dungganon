@@ -1,6 +1,6 @@
 @extends('layouts.global.dashboard')
 
-@section('title', 'Members')
+@section('title', 'Loan Request')
 
 @section('content')
 <main>
