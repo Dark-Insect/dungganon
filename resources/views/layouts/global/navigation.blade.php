@@ -41,9 +41,44 @@
                     @if (auth()->user()->role === "member")
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Menus</div>
+
+                            {{-- Main --}}
+                            <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="true" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+                                Main 
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="{{ route('member.loan.index') }}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-dollar"></i></div>
+                                        Loan
+                                    </a>
+                                    <a class="nav-link" href="{{ route('member.loan.create') }}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-dollar"></i></div>
+                                        New Loan
+                                    </a>
+                                    <a class="nav-link" href="{{ route('admin.member.create') }}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-wallet"></i></div>
+                                        Loan Balance
+                                    </a>
+                                    <a class="nav-link" href="{{ route('admin.member.create') }}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-file-invoice"></i></div>
+                                        Currently Monthly Payments
+                                    </a>
+                                </nav>
+                            </div>
+
+                            {{-- Email Notifications --}}
                             <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-bell"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-bell"></i></div>
                                 Email Notifications
+                            </a>
+
+                            {{-- Personal Information --}}
+                            <a class="nav-link" href="index.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                                Personal Information
                             </a>
                         </div>
                     @endif

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\MemberReminderController;
 use App\Http\Controllers\member\MemberController;
 use App\Http\Controllers\admin\LoanRequestController;
+use App\Http\Controllers\member\LoanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 // MEMBER DASHBOARD
 Route::prefix('member')->name('member.')->middleware('auth')->group(function () {
     Route::resource('/notifications', MemberController::class,['names' => 'mail']);
+    Route::resource('/loan', LoanController::class,['names' => 'loan']);
 });
 
 Auth::routes();
