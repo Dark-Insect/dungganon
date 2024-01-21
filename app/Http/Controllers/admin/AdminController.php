@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Carbon;
 
 class AdminController extends Controller
 {
@@ -23,28 +24,65 @@ class AdminController extends Controller
 
     public function store(Request $data)
     {
-        $fullname = $data['txt-fname'] . " " .$data['txt-lname'];
-        $full = $data['txt-lname'] . ', ' . $data['txt-fname'];
-        // Perform Validation
-        $this->validate($data, [
-            'txt-fname' => 'required|string|max:255',
-            'txt-lname' => 'required|string|max:255',
-            'txt-email' => 'required|string|email',
-            'txt-phone' => 'required',
-            'txt-pass' => 'required|string|min:8',
-            'txt-cpass' => 'required|string|same:txt-pass'
-        ]);
+        $permanent_address = $data['txt_permanent_st'] . ", " . $data['txt_permanent_barangay'] . ", " . $data['txt_permanent_city'] . ", " . $data['txt_permanent_province'];
+        $hs_extension = ($data['txt_hs_extention'] != "") ? $data['txt_hs_extention'] : 'n/a';
 
-        $data = User::create([
-            'name' => $full,
-            'email' => $data['txt-email'],
-            'phone' => $data['txt-phone'],
-            'password' => Hash::make($data['txt-cpass']),
+        User::create([
+            'first_name' => $data['txt_first_name'],
+            'middle_name' => $data['txt_middle_name'],
+            'last_name' => $data['txt_last_name'],
+            'date_of_birth' => Carbon::parse($data['dtr_date_of_birth']),
+            'place_of_birth' => $data['txt_place_of_birth'],
+            'civil_status' => $data['civil_status'],
+            'gender' => $data['gender'],
+            'religion' => $data['religion'],
+            'education_attainment' => $data['educational_attainment'],
+            'profile_pic' => 'not_set',
+            'present_address' => $data['txt_present_address'],
+            'permanent_address' => $permanent_address,
+            'no_of_years' => $data['txt_no_years'],
+            'mother_first_name' => $data['txt_m_first_name'],
+            'mother_middle_name' => $data['txt_m_middle_name'],
+            'mother_last_name' => $data['txt_m_last_name'],
+            'mother_other_information' => 'not_set',
+            'hs_first_name' => $data['txt_hs_first_name'],
+            'hs_middle_name' => $data['txt_hs_middle_name'],
+            'hs_last_name' => $data['txt_hs_last_name'],
+            'hs_extension' => $hs_extension,
+            'hs_date_of_birth' => Carbon::parse($data['txt_hs_date_of_birth']),
+            'client_source_income' => $data['txt_client_source_income'],
+            'hs_source_income' => $data['hs_present_source_of_income'],
+            'total_income' => $data['txt_total_family_income'],
+            'total_ppi_score' => $data['txt_total_ppi_score'],
+            'phone' => $data['txt_contact'],
+            'email' => $data['txt_email'],
+            'password' => Hash::make($data['txt_password']),
             'role' => 'member',
-            'is_active' => true
+            'is_active' => 1
         ]);
 
-        session()->flash('success', 'Successfully registered '.$fullname.' as a new member.');
+        // $fullname = $data['txt-fname'] . " " .$data['txt-lname'];
+        // $full = $data['txt-lname'] . ', ' . $data['txt-fname'];
+        // // Perform Validation
+        // $this->validate($data, [
+        //     'txt-fname' => 'required|string|max:255',
+        //     'txt-lname' => 'required|string|max:255',
+        //     'txt-email' => 'required|string|email',
+        //     'txt-phone' => 'required',
+        //     'txt-pass' => 'required|string|min:8',
+        //     'txt-cpass' => 'required|string|same:txt-pass'
+        // ]);
+
+        // $data = User::create([
+        //     'name' => $full,
+        //     'email' => $data['txt-email'],
+        //     'phone' => $data['txt-phone'],
+        //     'password' => Hash::make($data['txt-cpass']),
+        //     'role' => 'member',
+        //     'is_active' => true
+        // ]);
+
+        session()->flash('success', 'Successfully registered '.' as a new member.');
 
         return view('layouts.admin.member-create');
     }

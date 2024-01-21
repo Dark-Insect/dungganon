@@ -11,13 +11,183 @@
     @endif
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-7">
-                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Member</h3></div>
+            <div class="col-lg-10">
+                <div class="card shadow-lg border-0 rounded-lg mt-5 mb-5">
+                    <div class="card-header">
+                        <h3 class="text-center font-weight-light my-1">Create Member</h3>
+                    </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.member.store') }}">
                             @csrf
                             <div class="row mb-3">
+                                <label style="font-weight: bold;" for="txt_type_loan">Personal Information</label>
+                                <div class="form-group col-md-4">
+                                  <label for="txt_type_loan">First name</label>
+                                  <input type="text" class="form-control" id="txt_first_name" placeholder="Enter First name" name="txt_first_name">
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="txt_date">Middle name</label>
+                                  <input type="text" class="form-control" id="txt_middle_name" placeholder="Enter Middle name" name="txt_middle_name">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="txt_date">Last name</label>
+                                    <input type="text" class="form-control" id="txt_last_name" placeholder="Enter Last name" name="txt_last_name">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="form-group col-md-4">
+                                  <label for="txt_type_loan">Date of Birth</label>
+                                  <input type="date" class="form-control" id="dtr_date_of_birth" name="dtr_date_of_birth">
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="txt_date">Civil Status</label>
+                                  <select class="form-select" name="civil_status">
+                                    <option value="married">Married</option>
+                                    <option value="single">Single</option>
+                                    <option value="divorced">Divorced</option>
+                                    <option value="widowed">Widowed</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="txt_date">Gender</label>
+                                    <select class="form-select" name="gender">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="txt_reason">Place of Birth</label>
+                                <input type="text" class="form-control" id="txt_place_of_birth" placeholder="Enter Place of Brith" name="txt_place_of_birth">
+                            </div>
+                            <div class="row mb-3">
+                                <div class="form-group col-md-4">
+                                    <label for="txt_date">Religion</label>
+                                    <select class="form-select" name="religion">
+                                      <option value="married">Married</option>
+                                      <option value="single">Single</option>
+                                      <option value="divorced">Divorced</option>
+                                      <option value="widowed">Widowed</option>
+                                    </select>
+                                  </div>
+                                <div class="form-group col-md-4">
+                                  <label for="txt_date">Educational Attainment</label>
+                                  <select class="form-select" name="educational_attainment">
+                                    <option value="elementary">Elementary</option>
+                                    <option value="secondary">Secondary</option>
+                                    <option value="vocational">Vocational</option>
+                                    <option value="college undergrad">College Undergrad</option>
+                                    <option value="college graduate">College Graduate</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="txt_date">Contact No.</label>
+                                    <input type="text" class="form-control" id="txt_contact" placeholder="Enter Contact" name="txt_contact">
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="txt_reason">Present Address</label>
+                                <input type="text" class="form-control" id="txt_present_address" placeholder="Enter Present Address" name="txt_present_address">
+                            </div>
+                            <div class="row mb-3">
+                                <label style="font-weight: bold;" for="txt_type_loan">Permanent Address</label>
+                                <div class="form-group col-md-4">
+                                  <label for="txt_type_loan">Sitio/Prk/St</label>
+                                  <input type="text" class="form-control" id="txt_permanent_st" placeholder="Enter Sitio/Prk/St" name="txt_permanent_st">
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="txt_date">Barangay</label>
+                                  <input type="text" class="form-control" id="txt_permanent_barangay" placeholder="Enter Barangay" name="txt_permanent_barangay">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="txt_date">City/Municipality</label>
+                                    <input type="text" class="form-control" id="txt_permanent_city" placeholder="Enter City/Municipality" name="txt_permanent_city">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="txt_date">Province</label>
+                                    <input type="text" class="form-control" id="txt_permanent_province" placeholder="Enter Province" name="txt_permanent_province">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="txt_date">No. of  Years in the Community</label>
+                                    <input type="number" class="form-control" id="txt_no_years" placeholder="Enter No of Years" name="txt_no_years">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label style="font-weight: bold;" for="txt_type_loan bold">Mother's Maiden Name (Name of mother when she was still single)</label>
+                                <div class="form-group col-md-4">
+                                  <label for="txt_type_loan">First name</label>
+                                  <input type="text" class="form-control" id="txt_m_first_name" placeholder="Enter First name" name="txt_m_first_name">
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="txt_date">Middle name</label>
+                                  <input type="text" class="form-control" id="txt_m_middle_name" placeholder="Enter Middle name" name="txt_m_middle_name">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="txt_date">Last name</label>
+                                    <input type="text" class="form-control" id="txt_m_last_name" placeholder="Enter Last name" name="txt_m_last_name">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label style="font-weight: bold;" for="txt_type_loan fw-bold">Other Information: Husband/Spouse</label>
+                                <div class="form-group col-md-4">
+                                  <label for="txt_type_loan">First name</label>
+                                  <input type="text" class="form-control" id="txt_hs_first_name" placeholder="Enter First name" name="txt_hs_first_name">
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="txt_date">Middle name</label>
+                                  <input type="text" class="form-control" id="txt_hs_middle_name" placeholder="Enter Middle name" name="txt_hs_middle_name">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="txt_date">Last name</label>
+                                    <input type="text" class="form-control" id="txt_hs_last_name" placeholder="Enter Last name" name="txt_hs_last_name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="txt_date">Extension (Suffix)</label>
+                                    <input type="text" class="form-control" id="txt_hs_extention" placeholder="Enter Last name" name="txt_hs_extention">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="txt_date">Date of Birth</label>
+                                    <input type="date" class="form-control" id="txt_hs_date_of_birth" placeholder="Enter Last name" name="txt_hs_date_of_birth">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="form-group col-md-6">
+                                  <label for="txt_type_loan">Client's Present Source of income</label>
+                                  <input type="text" class="form-control" id="txt_client_source_income" placeholder="Enter Source" name="txt_client_source_income">
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="txt_date">Husband's Present Source of income</label>
+                                  <input type="text" class="form-control" id="hs_present_source_of_income" placeholder="Enter Source" name="hs_present_source_of_income">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="txt_date">Total Family Income (weekly)</label>
+                                    <input type="text" class="form-control" id="txt_total_family_income" placeholder="Enter Last name" name="txt_total_family_income">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="txt_date">Total PPI Score</label>
+                                    <input type="text" class="form-control" id="txt_total_ppi_score" placeholder="Enter Last name" name="txt_total_ppi_score">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label style="font-weight: bold;" for="txt_type_loan">Email & Password</label>
+                                <div class="form-group col-md-4">
+                                  <label for="txt_type_loan">Email</label>
+                                  <input type="email" class="form-control" id="txt_email" placeholder="Enter Email" name="txt_email">
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="txt_date">Password</label>
+                                  <input type="password" class="form-control" id="txt_password" placeholder="Enter Password" name="txt_password">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="txt_date">Confirm Password</label>
+                                    <input type="password" class="form-control" id="txt_cpassword" placeholder="Enter Confirm Password" name="txt_cpassword">
+                                </div>
+                            </div>
+                            <div class="mt-4 mb-0">
+                                <div class="d-grid"><input type="submit" class="btn btn-primary btn-block" value="Create Account"></div>
+                            </div>
+                            {{-- <div class="row mb-3">
                                 <div class="col-md-6">
                                     <div class="form-floating mb-3 mb-md-0">
                                         <input class="form-control" value="{{ old('txt-fname') }}" id="txt-fname" name="txt-fname" type="text" placeholder="Enter your first name" required/>
@@ -85,7 +255,7 @@
                             </div>
                             <div class="mt-4 mb-0">
                                 <div class="d-grid"><input type="submit" class="btn btn-primary btn-block" value="Create Account"></div>
-                            </div>
+                            </div> --}}
                         </form>
                     </div>
                 </div>
