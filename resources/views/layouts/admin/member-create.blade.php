@@ -17,27 +17,27 @@
                         <h3 class="text-center font-weight-light my-1">Create Member</h3>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('admin.member.store') }}">
+                        <form method="POST" action="{{ route('admin.member.store') }}" id="form_validate">
                             @csrf
                             <div class="row mb-3">
                                 <label style="font-weight: bold;" for="txt_type_loan">Personal Information</label>
                                 <div class="form-group col-md-4">
                                   <label for="txt_type_loan">First name</label>
-                                  <input type="text" class="form-control" id="txt_first_name" placeholder="Enter First name" name="txt_first_name">
+                                  <input type="text" class="form-control" id="txt_first_name" placeholder="Enter First name" name="txt_first_name" required>
                                 </div>
                                 <div class="form-group col-md-4">
                                   <label for="txt_date">Middle name</label>
-                                  <input type="text" class="form-control" id="txt_middle_name" placeholder="Enter Middle name" name="txt_middle_name">
+                                  <input type="text" class="form-control" id="txt_middle_name" placeholder="Enter Middle name" name="txt_middle_name" required>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="txt_date">Last name</label>
-                                    <input type="text" class="form-control" id="txt_last_name" placeholder="Enter Last name" name="txt_last_name">
+                                    <input type="text" class="form-control" id="txt_last_name" placeholder="Enter Last name" name="txt_last_name" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="form-group col-md-4">
                                   <label for="txt_type_loan">Date of Birth</label>
-                                  <input type="date" class="form-control" id="dtr_date_of_birth" name="dtr_date_of_birth">
+                                  <input type="date" class="form-control" id="dtr_date_of_birth" name="dtr_date_of_birth" required>
                                 </div>
                                 <div class="form-group col-md-4">
                                   <label for="txt_date">Civil Status</label>
@@ -58,7 +58,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="txt_reason">Place of Birth</label>
-                                <input type="text" class="form-control" id="txt_place_of_birth" placeholder="Enter Place of Brith" name="txt_place_of_birth">
+                                <input type="text" class="form-control" id="txt_place_of_birth" placeholder="Enter Place of Brith" name="txt_place_of_birth" required>
                             </div>
                             <div class="row mb-3">
                                 <div class="form-group col-md-4">
@@ -82,12 +82,12 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="txt_date">Contact No.</label>
-                                    <input type="text" class="form-control" id="txt_contact" placeholder="Enter Contact" name="txt_contact">
+                                    <input type="text" class="form-control" id="txt_contact" placeholder="Enter Contact" name="txt_contact" required>
                                 </div>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="txt_reason">Present Address</label>
-                                <input type="text" class="form-control" id="txt_present_address" placeholder="Enter Present Address" name="txt_present_address">
+                                <input type="text" class="form-control" id="txt_present_address" placeholder="Enter Present Address" name="txt_present_address" required>
                             </div>
                             <div class="row mb-3">
                                 <label style="font-weight: bold;" for="txt_type_loan">Permanent Address</label>
@@ -97,41 +97,41 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                   <label for="txt_date">Barangay</label>
-                                  <input type="text" class="form-control" id="txt_permanent_barangay" placeholder="Enter Barangay" name="txt_permanent_barangay">
+                                  <input type="text" class="form-control" id="txt_permanent_barangay" placeholder="Enter Barangay" name="txt_permanent_barangay" required>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="txt_date">City/Municipality</label>
-                                    <input type="text" class="form-control" id="txt_permanent_city" placeholder="Enter City/Municipality" name="txt_permanent_city">
+                                    <input type="text" class="form-control" id="txt_permanent_city" placeholder="Enter City/Municipality" name="txt_permanent_city" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="txt_date">Province</label>
-                                    <input type="text" class="form-control" id="txt_permanent_province" placeholder="Enter Province" name="txt_permanent_province">
+                                    <input type="text" class="form-control" id="txt_permanent_province" placeholder="Enter Province" name="txt_permanent_province" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="txt_date">No. of  Years in the Community</label>
-                                    <input type="number" class="form-control" id="txt_no_years" placeholder="Enter No of Years" name="txt_no_years">
+                                    <input type="number" class="form-control" id="txt_no_years" placeholder="Enter No of Years" name="txt_no_years" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label style="font-weight: bold;" for="txt_type_loan bold">Mother's Maiden Name (Name of mother when she was still single)</label>
                                 <div class="form-group col-md-4">
                                   <label for="txt_type_loan">First name</label>
-                                  <input type="text" class="form-control" id="txt_m_first_name" placeholder="Enter First name" name="txt_m_first_name">
+                                  <input type="text" class="form-control" id="txt_m_first_name" placeholder="Enter First name" name="txt_m_first_name" required>
                                 </div>
                                 <div class="form-group col-md-4">
                                   <label for="txt_date">Middle name</label>
-                                  <input type="text" class="form-control" id="txt_m_middle_name" placeholder="Enter Middle name" name="txt_m_middle_name">
+                                  <input type="text" class="form-control" id="txt_m_middle_name" placeholder="Enter Middle name" name="txt_m_middle_name" required>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="txt_date">Last name</label>
-                                    <input type="text" class="form-control" id="txt_m_last_name" placeholder="Enter Last name" name="txt_m_last_name">
+                                    <input type="text" class="form-control" id="txt_m_last_name" placeholder="Enter Last name" name="txt_m_last_name" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label style="font-weight: bold;" for="txt_type_loan fw-bold">Other Information: Husband/Spouse</label>
                                 <div class="form-group col-md-4">
                                   <label for="txt_type_loan">First name</label>
-                                  <input type="text" class="form-control" id="txt_hs_first_name" placeholder="Enter First name" name="txt_hs_first_name">
+                                  <input type="text" class="form-control" id="txt_hs_first_name" placeholder="Enter First name" name="txt_hs_first_name" >
                                 </div>
                                 <div class="form-group col-md-4">
                                   <label for="txt_date">Middle name</label>
@@ -263,4 +263,14 @@
         </div>
     </div>
 </main>
+{{-- <script>
+$(document).ready(function(){
+  $('#form_validate').submit(function(event){
+    event.preventDefault();
+    if($('#txt_cpassword').val() != $('#txt_password').val()){
+        alert("Password and Confirm Password do not match!");
+    }
+  })
+});   
+</script> --}}
 @endsection

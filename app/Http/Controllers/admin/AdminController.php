@@ -26,7 +26,7 @@ class AdminController extends Controller
     {
         $permanent_address = $data['txt_permanent_st'] . ", " . $data['txt_permanent_barangay'] . ", " . $data['txt_permanent_city'] . ", " . $data['txt_permanent_province'];
         $hs_extension = ($data['txt_hs_extention'] != "") ? $data['txt_hs_extention'] : 'n/a';
-
+        $fullname = $data['txt_first_name'] . " " . $data['txt_last_name'];
         User::create([
             'first_name' => $data['txt_first_name'],
             'middle_name' => $data['txt_middle_name'],
@@ -82,7 +82,7 @@ class AdminController extends Controller
         //     'is_active' => true
         // ]);
 
-        session()->flash('success', 'Successfully registered '.' as a new member.');
+        session()->flash('success', 'Successfully registered '. $fullname .' as a new member.');
 
         return view('layouts.admin.member-create');
     }
@@ -95,10 +95,13 @@ class AdminController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        $parts = explode(', ', $user->name);
-        $lastName = $parts[0];
-        $firstName = $parts[1];
-        return view('layouts.admin.member-edit', compact('user', 'lastName', 'firstName'));
+        $address = explode(', ',$user->permanent_address);
+        $street = $address[0];
+        $barangay = $address[1];
+        $city = $address[2];
+        $province = $address[3];
+
+        return view('layouts.admin.member-edit', compact('user','street','barangay','city','province'));
     }
 
     public function update(Request $data, $id)
