@@ -64,10 +64,11 @@
                                 <div class="form-group col-md-4">
                                     <label for="txt_date">Religion</label>
                                     <select class="form-select" name="religion">
-                                      <option value="married">Married</option>
-                                      <option value="single">Single</option>
-                                      <option value="divorced">Divorced</option>
-                                      <option value="widowed">Widowed</option>
+                                        <option value="roman_catholic">Roman Catholic</option>
+                                        <option value="islam" >Islam</option>
+                                        <option value="iglesia_ni_Cristo">Iglesia ni Cristo (INC)</option>
+                                        <option value="evangelical_christianity">Evangelical Christianity</option>
+                                        <option value="seventh-day_adventist">Seventh-day Adventist</option>
                                     </select>
                                   </div>
                                 <div class="form-group col-md-4">

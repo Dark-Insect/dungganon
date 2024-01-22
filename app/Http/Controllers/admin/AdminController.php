@@ -24,6 +24,39 @@ class AdminController extends Controller
 
     public function store(Request $data)
     {
+
+        // $this->validate($data, [
+        //     'txt_first_name' => 'required',
+        //     'txt_middle_name' => 'required',
+        //     'txt_last_name' => 'required',
+        //     'dtr_date_of_birth' => 'required',
+        //     'txt_place_of_birth' => 'required',
+        //     'civil_status' => 'required',
+        //     'gender' => 'required',
+        //     'religion' => 'required',
+        //     'education_attainment' => 'required',
+        //     'profile_pic' => 'not_set',
+        //     'txt_present_address' => 'required',
+        //     'txt_no_years' => 'required',
+        //     'txt_m_first_name' => 'required',
+        //     'txt_m_middle_name' => 'required',
+        //     'txt_m_last_name' => 'required',
+        //     'mother_other_information' => 'required',
+        //     'txt_hs_first_name' => 'required',
+        //     'txt_hs_middle_name' => 'required',
+        //     'txt_hs_last_name' => 'required',
+        //     'txt_hs_date_of_birth' => 'required',
+        //     'txt_client_source_income' => 'required',
+        //     'hs_present_source_of_income' => 'required',
+        //     'txt_total_family_income' => 'required',
+        //     'txt_total_ppi_score' => 'required',
+        //     'txt_contact' => 'required',
+        //     'txt_email' => 'required|string|email',
+        //     'txt-pass' => 'required|string|min:8',
+        //     'txt-pass' => 'required|string|min:8',
+        //     'txt-cpass' => 'required|string|same:txt-pass'
+        // ]);
+
         $permanent_address = $data['txt_permanent_st'] . ", " . $data['txt_permanent_barangay'] . ", " . $data['txt_permanent_city'] . ", " . $data['txt_permanent_province'];
         $hs_extension = ($data['txt_hs_extention'] != "") ? $data['txt_hs_extention'] : 'n/a';
         $fullname = $data['txt_first_name'] . " " . $data['txt_last_name'];
@@ -108,27 +141,61 @@ class AdminController extends Controller
     {
         $user = User::findOrFail($id);
         
-        if($data['txt-pass'] != $data['txt-cpass'])
-        {
-            session()->flash('warning', "Password and Confirm Password do not match!");
-            return redirect()->route('admin.member.edit', [$id]);
-        }
+        // if($data['txt-pass'] != $data['txt-cpass'])
+        // {
+        //     session()->flash('warning', "Password and Confirm Password do not match!");
+        //     return redirect()->route('admin.member.edit', [$id]);
+        // }
 
-        if($data['txt-pass'] != "" && $data['txt-cpass'] !="")
-        {
-            User::where('id', $id)->update([
-                'name' => $data['txt-lname'] . ", " . $data['txt-fname'],
-                'email' => $data['txt-email'],
-                'phone' => $data['txt-phone']
-            ]);
-        }else{
-            User::where('id', $id)->update([
-                'name' => $data['txt-lname'] . ", " . $data['txt-fname'],
-                'email' => $data['txt-email'],
-                'phone' => $data['txt-phone'],
-                'password' => Hash::make($data['txt-cpass']),
-            ]);
-        }
+        // if($data['txt-pass'] != "" && $data['txt-cpass'] !="")
+        // {
+        //     User::where('id', $id)->update([
+        //         'name' => $data['txt-lname'] . ", " . $data['txt-fname'],
+        //         'email' => $data['txt-email'],
+        //         'phone' => $data['txt-phone']
+        //     ]);
+        // }else{
+        //     User::where('id', $id)->update([
+        //         'name' => $data['txt-lname'] . ", " . $data['txt-fname'],
+        //         'email' => $data['txt-email'],
+        //         'phone' => $data['txt-phone'],
+        //         'password' => Hash::make($data['txt-cpass']),
+        //     ]);
+        // }
+        $permanent_address = $data['txt_permanent_st'] . ", " . $data['txt_permanent_barangay'] . ", " . $data['txt_permanent_city'] . ", " . $data['txt_permanent_province'];
+        $hs_extension = ($data['txt_hs_extention'] != "") ? $data['txt_hs_extention'] : 'n/a';
+        $fullname = $data['txt_first_name'] . " " . $data['txt_last_name'];
+
+        // User::where('id', $id)->update([
+        //     'first_name' => $data['txt_first_name'],
+        //     'middle_name' => $data['txt_middle_name'],
+        //     'last_name' => $data['txt_last_name'],
+        //     'date_of_birth' => Carbon::parse($data['dtr_date_of_birth']),
+        //     'place_of_birth' => $data['txt_place_of_birth'],
+        //     'civil_status' => $data['civil_status'],
+        //     'gender' => $data['gender'],
+        //     'religion' => $data['religion'],
+        //     'education_attainment' => $data['educational_attainment'],
+        //     'profile_pic' => 'not_set',
+        //     'present_address' => $data['txt_present_address'],
+        //     'permanent_address' => $permanent_address,
+        //     'no_of_years' => $data['txt_no_years'],
+        //     'mother_first_name' => $data['txt_m_first_name'],
+        //     'mother_middle_name' => $data['txt_m_middle_name'],
+        //     'mother_last_name' => $data['txt_m_last_name'],
+        //     'mother_other_information' => 'not_set',
+        //     'hs_first_name' => $data['txt_hs_first_name'],
+        //     'hs_middle_name' => $data['txt_hs_middle_name'],
+        //     'hs_last_name' => $data['txt_hs_last_name'],
+        //     'hs_extension' => $hs_extension,
+        //     'hs_date_of_birth' => Carbon::parse($data['txt_hs_date_of_birth']),
+        //     'client_source_income' => $data['txt_client_source_income'],
+        //     'hs_source_income' => $data['hs_present_source_of_income'],
+        //     'total_income' => $data['txt_total_family_income'],
+        //     'total_ppi_score' => $data['txt_total_ppi_score'],
+        //     'phone' => $data['txt_contact'],
+        //     'email' => $data['txt_email'],
+        // ]);
         
 
         session()->flash('success', 'User updated successfully!');

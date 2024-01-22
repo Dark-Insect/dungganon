@@ -46,17 +46,17 @@
                                 <div class="form-group col-md-4">
                                   <label for="txt_date">Civil Status</label>
                                   <select class="form-select" name="civil_status">
-                                    <option value="married">Married</option>
-                                    <option value="single">Single</option>
-                                    <option value="divorced">Divorced</option>
-                                    <option value="widowed">Widowed</option>
+                                    <option value="married" @selected($user->civil_status == 'married') >Married</option>
+                                    <option value="single" @selected($user->civil_status == 'single')>Single</option>
+                                    <option value="divorced" @selected($user->civil_status == 'divorced')>Divorced</option>
+                                    <option value="widowed" @selected($user->civil_status == 'widowed')>Widowed</option>
                                   </select>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="txt_date">Gender</label>
                                     <select class="form-select" name="gender">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
+                                        <option value="male" @selected($user->gender == 'male')>Male</option>
+                                        <option value="female" @selected($user->gender == 'female')>Female</option>
                                     </select>
                                 </div>
                             </div>
@@ -68,20 +68,21 @@
                                 <div class="form-group col-md-4">
                                     <label for="txt_date">Religion</label>
                                     <select class="form-select" name="religion">
-                                      <option value="married">Married</option>
-                                      <option value="single">Single</option>
-                                      <option value="divorced">Divorced</option>
-                                      <option value="widowed">Widowed</option>
+                                      <option value="Roman Catholic" @selected($user->religion == 'roman_catholic')>Roman Catholic</option>
+                                      <option value="Islam" @selected($user->religion == 'Islam')>Islam</option>
+                                      <option value="Iglesia ni Cristo (INC)" @selected($user->religion == 'iglesia_ni_cristo')>Iglesia ni Cristo (INC)</option>
+                                      <option value="Evangelical Christianity" @selected($user->religion == 'evangelical_christianity')>Evangelical Christianity</option>
+                                      <option value="Seventh-day Adventist" @selected($user->religion == 'seventh-day_adventist')>Seventh-day Adventist</option>
                                     </select>
                                   </div>
                                 <div class="form-group col-md-4">
                                   <label for="txt_date">Educational Attainment</label>
                                   <select class="form-select" name="educational_attainment">
-                                    <option value="elementary">Elementary</option>
-                                    <option value="secondary">Secondary</option>
-                                    <option value="vocational">Vocational</option>
-                                    <option value="college undergrad">College Undergrad</option>
-                                    <option value="college graduate">College Graduate</option>
+                                    <option value="elementary" @selected($user->educational_attainment == 'elementary')>Elementary</option>
+                                    <option value="secondary" @selected($user->educational_attainment == 'secondary')>Secondary</option>
+                                    <option value="vocational" @selected($user->educational_attainment == 'vocational')>Vocational</option>
+                                    <option value="college undergrad" @selected($user->educational_attainment == 'college undergrad')>College Undergrad</option>
+                                    <option value="college graduate" @selected($user->educational_attainment == 'college graduate')>College Graduate</option>
                                   </select>
                                 </div>
                                 <div class="form-group col-md-4">
