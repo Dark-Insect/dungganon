@@ -22,16 +22,31 @@
                             <div class="row mb-3">
                                 <label style="font-weight: bold;" for="txt_type_loan">Personal Information</label>
                                 <div class="form-group col-md-4">
-                                  <label for="txt_type_loan">First name</label>
-                                  <input type="text" class="form-control" id="txt_first_name" placeholder="Enter First name" name="txt_first_name" required>
+                                    <label for="txt_type_loan">First name</label>
+                                    <input type="text" class="form-control" id="txt_first_name" placeholder="Enter First name" name="txt_first_name" required>
+                                    @error('txt_first_name')
+                                        <span class="invalid-feedback" role="alert" style="display: block !important">
+                                            <strong>First name is required</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group col-md-4">
-                                  <label for="txt_date">Middle name</label>
-                                  <input type="text" class="form-control" id="txt_middle_name" placeholder="Enter Middle name" name="txt_middle_name" required>
+                                    <label for="txt_date">Middle name</label>
+                                    <input type="text" class="form-control" id="txt_middle_name" placeholder="Enter Middle name" name="txt_middle_name" required>
+                                    @error('txt_first_name')
+                                        <span class="invalid-feedback" role="alert" style="display: block !important">
+                                            <strong>Middle name is required</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="txt_date">Last name</label>
                                     <input type="text" class="form-control" id="txt_last_name" placeholder="Enter Last name" name="txt_last_name" required>
+                                    @error('txt_first_name')
+                                        <span class="invalid-feedback" role="alert" style="display: block !important">
+                                            <strong>Last name is required</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -57,8 +72,13 @@
                                 </div>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="txt_reason">Place of Birth</label>
-                                <input type="text" class="form-control" id="txt_place_of_birth" placeholder="Enter Place of Brith" name="txt_place_of_birth" required>
+                                    <label for="txt_reason">Place of Birth</label>
+                                    <input type="text" class="form-control" id="txt_place_of_birth" placeholder="Enter Place of Brith" name="txt_place_of_birth" required>
+                                    @error('txt_place_of_birth')
+                                        <span class="invalid-feedback" role="alert" style="display: block !important">
+                                            <strong>Birthplace is required</strong>
+                                        </span>
+                                    @enderror
                             </div>
                             <div class="row mb-3">
                                 <div class="form-group col-md-4">
@@ -83,49 +103,94 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="txt_date">Contact No.</label>
-                                    <input type="text" class="form-control" id="txt_contact" placeholder="Enter Contact" name="txt_contact" required>
+                                    <input type="tel" class="form-control" id="txt_contact" placeholder="123-45-678" name="txt_contact" required>
+                                    @error('txt_contact')
+                                        <span class="invalid-feedback" role="alert" style="display: block !important">
+                                            <strong>Contact No is required</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="txt_reason">Present Address</label>
-                                <input type="text" class="form-control" id="txt_present_address" placeholder="Enter Present Address" name="txt_present_address" required>
+                                <input type="text" class="form-control" id="txt_present_address" placeholder="Enter Present Address" name="txt_present_address">
+                                @error('txt_present_address')
+                                    <span class="invalid-feedback" role="alert" style="display: block !important">
+                                        <strong>Permanent address is required</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="row mb-3">
                                 <label style="font-weight: bold;" for="txt_type_loan">Permanent Address</label>
                                 <div class="form-group col-md-4">
-                                  <label for="txt_type_loan">Sitio/Prk/St</label>
-                                  <input type="text" class="form-control" id="txt_permanent_st" placeholder="Enter Sitio/Prk/St" name="txt_permanent_st">
+                                    <label for="txt_type_loan">Sitio/Prk/St</label>
+                                    <input type="text" class="form-control" id="txt_permanent_st" placeholder="Enter Sitio/Prk/St" name="txt_permanent_st">
                                 </div>
                                 <div class="form-group col-md-4">
-                                  <label for="txt_date">Barangay</label>
-                                  <input type="text" class="form-control" id="txt_permanent_barangay" placeholder="Enter Barangay" name="txt_permanent_barangay" required>
+                                    <label for="txt_date">Barangay</label>
+                                    <input type="text" class="form-control" id="txt_permanent_barangay" placeholder="Enter Barangay" name="txt_permanent_barangay" required>
+                                    @error('txt_permanent_barangay')
+                                        <span class="invalid-feedback" role="alert" style="display: block !important">
+                                            <strong>Barangay is required</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="txt_date">City/Municipality</label>
                                     <input type="text" class="form-control" id="txt_permanent_city" placeholder="Enter City/Municipality" name="txt_permanent_city" required>
+                                    @error('txt_permanent_city')
+                                        <span class="invalid-feedback" role="alert" style="display: block !important">
+                                            <strong>City/Municipality is required</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="txt_date">Province</label>
                                     <input type="text" class="form-control" id="txt_permanent_province" placeholder="Enter Province" name="txt_permanent_province" required>
+                                    @error('txt_permanent_province')
+                                        <span class="invalid-feedback" role="alert" style="display: block !important">
+                                            <strong>Province is required</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="txt_date">No. of  Years in the Community</label>
                                     <input type="number" class="form-control" id="txt_no_years" placeholder="Enter No of Years" name="txt_no_years" required>
+                                    @error('txt_no_years')
+                                        <span class="invalid-feedback" role="alert" style="display: block !important">
+                                            <strong>No of years is required</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label style="font-weight: bold;" for="txt_type_loan bold">Mother's Maiden Name (Name of mother when she was still single)</label>
                                 <div class="form-group col-md-4">
-                                  <label for="txt_type_loan">First name</label>
-                                  <input type="text" class="form-control" id="txt_m_first_name" placeholder="Enter First name" name="txt_m_first_name" required>
+                                    <label for="txt_type_loan">First name</label>
+                                    <input type="text" class="form-control" id="txt_m_first_name" placeholder="Enter First name" name="txt_m_first_name" required>
+                                    @error('txt_m_first_name')
+                                        <span class="invalid-feedback" role="alert" style="display: block !important">
+                                            <strong>First name is required</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group col-md-4">
-                                  <label for="txt_date">Middle name</label>
-                                  <input type="text" class="form-control" id="txt_m_middle_name" placeholder="Enter Middle name" name="txt_m_middle_name" required>
+                                    <label for="txt_date">Middle name</label>
+                                    <input type="text" class="form-control" id="txt_m_middle_name" placeholder="Enter Middle name" name="txt_m_middle_name" required>
+                                    @error('txt_m_middle_name')
+                                        <span class="invalid-feedback" role="alert" style="display: block !important">
+                                            <strong>Middle name is required</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="txt_date">Last name</label>
                                     <input type="text" class="form-control" id="txt_m_last_name" placeholder="Enter Last name" name="txt_m_last_name" required>
+                                    @error('txt_m_last_name')
+                                        <span class="invalid-feedback" role="alert" style="display: block !important">
+                                            <strong>Last name is required</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -153,36 +218,66 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="form-group col-md-6">
-                                  <label for="txt_type_loan">Client's Present Source of income</label>
-                                  <input type="text" class="form-control" id="txt_client_source_income" placeholder="Enter Source" name="txt_client_source_income">
+                                    <label for="txt_type_loan">Client's Present Source of income</label>
+                                    <input type="text" class="form-control" id="txt_client_source_income" placeholder="Enter Source" name="txt_client_source_income" required>
+                                    @error('txt_client_source_income')
+                                        <span class="invalid-feedback" role="alert" style="display: block !important">
+                                            <strong>Client Source is required</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                  <label for="txt_date">Husband's Present Source of income</label>
-                                  <input type="text" class="form-control" id="hs_present_source_of_income" placeholder="Enter Source" name="hs_present_source_of_income">
+                                    <label for="txt_date">Husband's Present Source of income</label>
+                                    <input type="text" class="form-control" id="hs_present_source_of_income" placeholder="Enter Source" name="hs_present_source_of_income">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="txt_date">Total Family Income (weekly)</label>
-                                    <input type="text" class="form-control" id="txt_total_family_income" placeholder="Enter Last name" name="txt_total_family_income">
+                                    <input type="text" class="form-control" id="txt_total_family_income" placeholder="Enter Last name" name="txt_total_family_income" required>
+                                    @error('txt_total_family_income')
+                                        <span class="invalid-feedback" role="alert" style="display: block !important">
+                                            <strong>Total income is required</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="txt_date">Total PPI Score</label>
-                                    <input type="text" class="form-control" id="txt_total_ppi_score" placeholder="Enter Last name" name="txt_total_ppi_score">
+                                    <input type="text" class="form-control" id="txt_total_ppi_score" placeholder="Enter Last name" name="txt_total_ppi_score" required>
+                                    @error('txt_total_ppi_score')
+                                        <span class="invalid-feedback" role="alert" style="display: block !important">
+                                            <strong>Total PPI Score is required</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label style="font-weight: bold;" for="txt_type_loan">Email & Password</label>
                                 <div class="form-group col-md-4">
-                                  <label for="txt_type_loan">Email</label>
-                                  <input type="email" class="form-control" id="txt_email" placeholder="Enter Email" name="txt_email">
+                                    <label for="txt_type_loan">Email</label>
+                                    <input type="email" class="form-control" id="txt_email" placeholder="Enter Email" name="txt_email" required>
+                                    @error('txt_email')
+                                        <span class="invalid-feedback" role="alert" style="display: block !important">
+                                            <strong>Email is required</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group col-md-4">
-                                  <label for="txt_date">Password</label>
-                                  <input type="password" class="form-control" id="txt_password" placeholder="Enter Password" name="txt_password">
+                                    <label for="txt_password">Password</label>
+                                    <input type="password" class="form-control" id="txt_password" placeholder="Enter Password" name="txt_password" required>
+                                    @error('txt_password')
+                                        <span class="invalid-feedback" role="alert" style="display: block !important">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="txt_date">Confirm Password</label>
-                                    <input type="password" class="form-control" id="txt_cpassword" placeholder="Enter Confirm Password" name="txt_cpassword">
+                                    <label for="txt_cpassword">Confirm Password</label>
+                                    <input type="password" class="form-control" id="txt_cpassword" placeholder="Enter Confirm Password" name="txt_cpassword" required>
+                                    @error('txt_cpassword')
+                                        <span class="invalid-feedback" role="alert" style="display: block !important">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="mt-4 mb-0">

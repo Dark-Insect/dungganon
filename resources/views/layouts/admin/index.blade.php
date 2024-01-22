@@ -39,7 +39,7 @@
                                 @foreach ($users as $user)
                                     @if ($user->role === 'member')
                                         <tr>
-                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->first_name . " " . $user->last_name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->phone }}</td>
                                             <td style="display: flex;">
