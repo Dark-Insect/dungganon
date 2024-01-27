@@ -65,9 +65,15 @@ class AdminController extends Controller
         return view('layouts.admin.member-create');
     }
 
-    public function show()
+    public function show($id)
     {
-        // return view('layouts.admin.index');
+        $user = User::findOrFail($id);
+
+        $temp = explode(', ',$user->permanent_address);
+
+        
+
+        return view('layouts.admin.member-view',compact('user','temp'));
     }
 
     public function edit($id)

@@ -73,9 +73,9 @@ button:hover {
 }
 </style>
 <main>
-    @if (session('success'))
-        <div class="alert alert-success text-center">
-            {{ session('success') }} <a href="{{ route('admin.member.index') }}">view members</a>
+    @if (session('danger'))
+        <div class="alert alert-danger text-center">
+            {{ session('danger') }} <a href="{{ route('admin.member.index') }}">view members</a>
         </div>
     @endif
     <div class="container">
@@ -84,10 +84,40 @@ button:hover {
                 <div class="card shadow-lg border-0 rounded-lg mt-5 mb-5">
                     <div class="card-header"><h6 class="text-center font-weight-light my-1">New Loan</h6></div>
                     <div class="card-body">
-                        <form method="POST" action="" id="regForm">
+                        <form method="POST" action="{{ route('member.loan-request') }}" id="regForm" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
+                            <div class="row mb-3">
+                              <div class="form-group col-md-6">
+                                <label for="txt_type_loan">Loan Amount</label>
+                                <input type="number" class="form-control" id="txt_loan_amount" name="txt_loan_amount">
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="txt_type_loan">Loan Purpose</label>
+                                <input type="text" class="form-control" id="txt_purpose" name="txt_purpose">
+                              </div>
+                            </div>
+                            <div class="row mb-3">
+                              <div class="form-group col-md-6">
+                                <label for="txt_type_loan">Weekly Earnings</label>
+                                <input type="number" class="form-control" id="txt_weekly_earnings" name="txt_weekly_earnings">
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="txt_type_loan">Loan Term</label>
+                                <input type="date" class="form-control" id="dtr_term" name="dtr_term">
+                              </div>
+                            </div>
+                            <div class="row mb-3">
+                              <div class="form-group col-md-12">
+                                <label for="txt_type_loan">Upload Form</label>
+                                <input class="form-control" type="file" id="formFile" name="formFile">
+                              </div>
+                            </div>
+                            <div class="form-group mb-3">
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
                             {{-- LOAN PROPOSAL SHEET --}}
-                            <div class="tab">
+                            {{-- <div class="tab">
                               <h3 class="h4 mb-5 text-center font-weight-bold">LOAN PROPOSAL SHEET</h3>
                               <div class="row mb-3">
                                 <div class="form-group col-md-6">
@@ -148,7 +178,7 @@ button:hover {
                             </div>
 
                             {{-- LOAN UTILIZATION CHECK FORM --}}
-                            <div class="tab">
+                            {{-- <div class="tab">
                               <h3 class="h4 mb-5 text-center font-weight-bold">LOAN UTILIZATION CHECK FORM</h3>
                               <div class="row mb-3">
                                 <div class="form-group col-md-6">
@@ -188,7 +218,7 @@ button:hover {
                               <span class="step"></span>
                               <span class="step"></span>
                               <span class="step"></span>
-                            </div>
+                            </div> --}} 
                             {{-- <div class="row mb-3">
                                 <div class="form-group col-md-6">
                                   <label for="txt_type_loan">Type of Loan</label>

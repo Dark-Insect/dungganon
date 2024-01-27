@@ -22,6 +22,7 @@
                             <th>Full Name</th>
                             <th>Email</th>
                             <th>Phone</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -30,26 +31,22 @@
                             <th>Full Name</th>
                             <th>Email</th>
                             <th>Phone</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        @isset($users)
-                            @if ($users)
-                                @foreach ($users as $user)
-                                    @if ($user->role === 'member')
+                        @isset($loans)
+                            @if ($loans)
+                                @foreach ($loans as $loan)
+                                    @if ($loan->loan_approved === 0)
                                         <tr>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>{{ $user->phone }}</td>
-                                            <td style="display: flex;">
-                                                <a class="btn btn-primary btn-sm" href="{{ route('admin.member.edit', $user->id) }}"><i class="fas fa-pen"></i></a>
-                                                <form action="{{ route('admin.member.destroy', $user->id) }}" method="post">
-                                                    @csrf
-                                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                                    @method('DELETE')
-                                                </form>
-                                                {{-- <a class="btn btn-danger btn-sm" href="{{ route('admin.member.delete', $user->id) }}"><i class="fas fa-trash"></i></a> --}}
+                                            <td>{{ $loan->first_name . " " . $loan->last_name }}</td>
+                                            <td>{{ $loan->email }}</td>
+                                            <td>{{ $loan->phone }}</td>
+                                            <td>{{ ($loan->loan_approved === 0) ? "Pending" : "Approved" }}</td>
+                                            <td>
+                                                <a class="btn btn-primary btn-sm" href="{{ route('admin.loan-review', $loan->loan_id) }}">Review</a>
                                             </td>
                                         </tr>
                                     @endif 
