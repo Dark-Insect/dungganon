@@ -5,7 +5,9 @@ use App\Http\Controllers\admin\MemberReminderController;
 use App\Http\Controllers\member\MemberController;
 use App\Http\Controllers\admin\LoanRequestController;
 use App\Http\Controllers\member\LoanController;
-
+use App\Http\Controllers\member\LoanBalanceController;
+use App\Http\Controllers\admin\LoanPaymentController;
+use App\Http\Controllers\admin\LoanListController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +36,19 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Loan Review
     Route::get('loan-review/{id}',[LoanRequestController::class,'ReviewLoanRequest'])->name('loan-review');
+    Route::put('loan-review/{id}/approved',[LoanRequestController::class,'LoanApproved'])->name('loan-review-approved');
+    Route::put('loan-review/{id}/declined',[LoanRequestController::class,'LoanDeclined'])->name('loan-review-declined');
+
+    // Loan Payment
+    Route::get('loan-payment',[LoanPaymentController::class,'index'])->name('loan-payment-index');
+    Route::get('loan-payment/{id}',[LoanPaymentController::class,'viewActiveLoan'])->name('loan-payment-user-loan-lists');
+    Route::post('loan-payment/{id}',[LoanPaymentController::class,'PayLoan'])->name('pay.loan');
+
+    // Loan
+    Route::get('loan/{id}',[LoanPaymentController::class,'viewLoan'])->name('loan');
+
+    // Loan List
+    Route::get('loan-lists',[LoanListController::class,'index'])->name('loan.lists');
 });
 
 // MEMBER DASHBOARD
@@ -43,6 +58,9 @@ Route::prefix('member')->name('member.')->middleware('auth')->group(function () 
 
     // PUT
     Route::put('loan-request', [LoanController::class,'LoanRequest'])->name('loan-request');
+
+    // Loan Balance
+    Route::get('/loan-balance/',[LoanBalanceController::class,'index'])->name('loan-balance-index');
 });
 
 Auth::routes();

@@ -22,12 +22,15 @@ return new class extends Migration
             $table->integer("loan_amount")->nullable();
             $table->integer("loan_weekly_earn")->nullable();
             $table->string("loan_purpose")->nullable();
-            $table->date("loan_term")->nullable();
+            $table->float("loan_term")->nullable();
 
             // Loan Status and Type
             $table->string("loan_cycle_type")->nullable();
             $table->string("loan_approved")->nullable();
             $table->string("loan_status")->nullable();
+
+            // Loan Comment
+            $table->string('loan_admin_recommendation')->nullable();
 
             // Document Name
             $table->string("loan_uploaded_name")->nullable();

@@ -4,9 +4,14 @@
 
 @section('content')
 <main>
-    @if (session('deleted'))
+    @if (session('success'))
+        <div class="alert alert-success text-center">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if (session('danger'))
         <div class="alert alert-danger text-center">
-            {{ session('deleted') }}
+            {{ session('danger') }}
         </div>
     @endif
     <div class="container-fluid px-4">
@@ -15,12 +20,20 @@
             <h1 class="mt-4">Review Loan</h1>
           </div>
           <div class="d-flex justify-content-between" style="gap: 20px;">
-            <form action="" class="mt-4">
-              <a href="" class="btn btn-success">Approved</a>
-            </form>
-            <form action="" class="mt-4">
-              <a href="" class="btn btn-danger">Decline</a>
-            </form>
+            @if ($data->loan_approved == "approved" || $data->loan_approved == "declined")
+            
+            @else
+              <form action="{{ route('admin.loan-review-approved',$id) }}" class="mt-4" method="POST">
+                @csrf
+                @method('PUT')
+                <input class="btn btn-success" type="submit" value="Approve">
+              </form>
+              <form action="{{ route('admin.loan-review-declined',$id) }}" class="mt-4" method="POST">
+                @csrf
+                @method('PUT')
+                <input class="btn btn-danger" type="submit" value="Decline">
+              </form>
+            @endif
           </div>
         </div>
         <div class="card mb-4">
@@ -42,7 +55,7 @@
                   <th class="w-25">Weekly Income</th>
                   <td class="w-25">{{ $data->loan_weekly_earn }}</td>
                   <th class="w-25">Loan Term</th>
-                  <td class="w-25">{{ $data->loan_term }}</td>
+                  <td class="w-25">{{ $term }}</td>
                 </tr>
                 </tr>
               </table>

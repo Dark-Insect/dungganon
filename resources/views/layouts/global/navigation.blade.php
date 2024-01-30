@@ -58,7 +58,7 @@
                                         <div class="sb-nav-link-icon"><i class="fas fa-dollar"></i></div>
                                         New Loan
                                     </a>
-                                    <a class="nav-link" href="{{ route('admin.member.create') }}">
+                                    <a class="nav-link" href="{{ route('member.loan-balance-index') }}">
                                         <div class="sb-nav-link-icon"><i class="fas fa-wallet"></i></div>
                                         Loan Balance
                                     </a>
@@ -87,7 +87,7 @@
                             <div class="sb-sidenav-menu-heading">Menus</div>
                             <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="true" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                                Manage Member
+                                Manage Users
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
@@ -125,9 +125,17 @@
                             </a>
                             <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="{{ route('admin.loan.lists') }}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                        Loan Lists
+                                    </a>
                                     <a class="nav-link" href="{{ route('admin.loan-request.index') }}">
                                         <div class="sb-nav-link-icon"><i class="fas fa-bell"></i></div>
-                                        Loan Request
+                                        Borrowers
+                                    </a>
+                                    <a class="nav-link" href="{{ route('admin.loan-payment-index') }}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-dollar"></i></div>
+                                        Payments
                                     </a>
                                 </nav>
                             </div>

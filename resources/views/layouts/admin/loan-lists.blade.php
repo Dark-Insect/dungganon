@@ -10,7 +10,7 @@
         </div>
     @endif
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Loan Requests</h1>
+        <h1 class="mt-4">Loan Lists</h1>
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
@@ -39,17 +39,15 @@
                         @isset($loans)
                             @if ($loans)
                                 @foreach ($loans as $loan)
-                                    @if ($loan->loan_approved === "pending")
-                                        <tr>
-                                            <td>{{ $loan->first_name . " " . $loan->last_name }}</td>
-                                            <td>{{ $loan->email }}</td>
-                                            <td>{{ $loan->phone }}</td>
-                                            <td>{{ ($loan->loan_approved === "pending") ? "Pending" : "Approved" }}</td>
-                                            <td>
-                                                <a class="btn btn-primary btn-sm" href="{{ route('admin.loan-review', $loan->loan_id) }}">Review</a>
-                                            </td>
-                                        </tr>
-                                    @endif 
+                                    <tr>
+                                        <td>{{ $loan->first_name . " " . $loan->last_name }}</td>
+                                        <td>{{ $loan->email }}</td>
+                                        <td>{{ $loan->phone }}</td>
+                                        <td>{{ ($loan->loan_approved === "pending") ? "Pending" : "Approved" }}</td>
+                                        <td>
+                                            <a class="btn btn-primary btn-sm" href="{{ route('admin.loan-review', $loan->loan_id) }}">Review</a>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             @endif
                         @endisset
