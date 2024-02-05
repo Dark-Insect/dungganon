@@ -16,8 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('teller_id');
             $table->foreignId('loan_id');
-            $table->float('balance');
-            $table->float('interest');
+            $table->float('principal')->nullable();
+            $table->float('balance')->nullable();
+            $table->float('interest')->nullable();
+            $table->float('loan_amortization')->nullable();
             $table->float('amount_pay');
             $table->date('date');
             $table->timestamps();

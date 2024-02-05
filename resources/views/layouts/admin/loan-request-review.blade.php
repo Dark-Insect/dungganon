@@ -57,6 +57,15 @@
                   <th class="w-25">Loan Term</th>
                   <td class="w-25">{{ $term }}</td>
                 </tr>
+                <tr>
+                  <th class="w-25">Interest</th>
+                  <td class="w-25">₱{{ $data->interest }}</td>
+                  <th class="w-25">Principal</th>
+                  <td class="w-25">₱{{ $data->principal }}</td>
+                </tr>
+                <tr>
+                  <th class="w-25" colspan="2">Loan Amortization</th>
+                  <td class="w-25" colspan="2">₱{{ $data->loan_amortization }}</td>
                 </tr>
               </table>
             </table>

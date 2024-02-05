@@ -32,6 +32,11 @@ return new class extends Migration
             // Loan Comment
             $table->string('loan_admin_recommendation')->nullable();
 
+            // Loan Pay
+            $table->float("loan_amortization")->nullable();
+            $table->float("principal")->nullable();
+            $table->float("interest")->nullable();
+
             // Document Name
             $table->string("loan_uploaded_name")->nullable();
 

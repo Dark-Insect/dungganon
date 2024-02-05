@@ -8,9 +8,14 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <main>
-    @if (session('deleted'))
+    @if (session('success'))
+        <div class="alert alert-success text-center">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if (session('failed'))
         <div class="alert alert-danger text-center">
-            {{ session('deleted') }}
+            {{ session('failed') }}
         </div>
     @endif
     <div class="container-fluid px-4">
@@ -24,6 +29,22 @@
                 </button>
             </div>
         </div>
+        <div>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Loan Amount</th>
+                    <td>₱{{ $loan->loan_amount }}</td>
+                    <th>Principal</th>
+                    <td>₱{{ $loan->principal }}</td>
+                </tr>
+                <tr>
+                    <th>Interest</th>
+                    <td>₱{{ $loan->interest }}</td>
+                    <th>Loan Amortization</th>
+                    <td>₱{{ $loan->loan_amortization }}</td>
+                </tr>
+            </table>
+        </div>
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
@@ -34,9 +55,10 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Loan ID</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Balance</th>
+                            <th scope="col">Principal</th>
                             <th scope="col">Interest</th>
+                            <th scope="col">Loan Amortization</th>
+                            <th scope="col">Balance</th>
                             <th scope="col">Date</th>
                         </tr>
                     </thead>
@@ -47,9 +69,10 @@
                                     <tr>
                                         <td>{{ $loan->history_id }}</td>
                                         <td>{{ $loan->loan_id }}</td>
-                                        <td>{{ $loan->amount_pay }}</td>
-                                        <td>{{ $loan->balance }}</td>
-                                        <td>{{ $loan->interest }}</td>
+                                        <td>₱{{ $loan->principal }}</td>
+                                        <td>₱{{ $loan->interest }}</td>
+                                        <td>₱{{ $loan->loan_amortization }}</td>
+                                        <td>₱{{ $loan->balance }}</td>
                                         <td>{{ \Carbon\Carbon::parse($loan->date)->format('F d Y, l') }}</td>
                                     </tr>
                                 @endforeach
@@ -84,9 +107,7 @@
                         <div class="col">
                           <input type="number" class="form-control" placeholder="Amount to Pay" name="txt-amount">
                         </div>
-                        <div class="col">
-                          <input type="number" class="form-control" placeholder="Interest" name="txt-interest">
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="modal-footer">

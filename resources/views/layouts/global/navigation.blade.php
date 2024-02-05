@@ -137,6 +137,10 @@
                                         <div class="sb-nav-link-icon"><i class="fas fa-dollar"></i></div>
                                         Payments
                                     </a>
+                                    <a class="nav-link" href="{{ route('admin.savings.index') }}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-bank"></i></div>
+                                        Savings
+                                    </a>
                                 </nav>
                             </div>
                         </div>

@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Mail\LoanApproved as LoanApprovedNotifications;
+use Illuminate\Support\Facades\Mail;
 
 class LoanRequestController extends Controller
 {
@@ -36,35 +39,11 @@ class LoanRequestController extends Controller
             case 0.60:
                 $term = "6 Months";
                 break;
+            case 0.90:
+                $term = "9 Months";
+                break;
             case 1:
-                $term = "1 Years";
-                break;
-            case 2:
-                $term = "2 Years";
-                break;
-            case 3:
-                $term = "3 Years";
-                break;
-            case 4:
-                $term = "4 Years";
-                break;
-            case 5:
-                $term = "5 Years";
-                break;
-            case 6:
-                $term = "6 Years";
-                break;
-            case 7:
-                $term = "7 Years";
-                break;
-            case 8:
-                $term = "8 Years";
-                break;
-            case 9:
-                $term = "9 Years";
-                break;
-            case 10:
-                $term = "10 Years";
+                $term = "12 Months";
                 break;
         }
         
@@ -77,6 +56,8 @@ class LoanRequestController extends Controller
         // Select 
         $loan = DB::table('loan_request')->where('loan_id', $id)->first();
 
+        $user = User::findOrFail($loan->user_id);
+
         $data = DB::table('loan_request')
         ->where('loan_id',$id)
         ->update([
@@ -84,11 +65,18 @@ class LoanRequestController extends Controller
         ]);
 
         // Add Balance Account
-        DB::table('account')->insert([
-            'user_id' => $loan->user_id,
-            'account_balance' => $loan->loan_amount
-        ]);
-
+        $account = DB::table('account')->where('user_id', $loan->user_id)->first();
+        if (!is_null($account)) {
+            $new = $account->account_balance + $loan->loan_amount;
+            DB::table('account')->where('user_id', $loan->user_id)->update([
+                'account_balance' => $new
+            ]);
+        } else {
+            DB::table('account')->insert([
+                'user_id' => $loan->user_id,
+                'account_balance' => $loan->loan_amount
+            ]);
+        }
         // Add History
         DB::table('account_history')->insert([
             'user_id' => $loan->user_id,
@@ -96,9 +84,38 @@ class LoanRequestController extends Controller
             'loan_id' => $id,
             'balance' => $loan->loan_amount,
             'interest' => 0,
+            'principal' => 0,
+            'loan_amortization' => 0,
             'amount_pay' => 0,
             'date' => now()->format('Y-m-d H:i:s')
         ]);
+
+        // Notify the user when approved
+        $term = "";
+        switch($loan->loan_term)
+        {
+            case 0.30:
+                $term = "3 Months";
+                break;
+            case 0.60:
+                $term = "6 Months";
+                break;
+            case 0.90:
+                $term = "9 Months";
+                break;
+            case 1:
+                $term = "12 Months";
+                break;
+        }
+
+        $result = Mail::to($user->email)->send(new LoanApprovedNotifications([
+            'name' => $user->first_name . " " . $user->last_name,
+            'loan_amount' => $loan->loan_amount,
+            'loan_purpose' => $loan->loan_purpose,
+            'loan_term' => $term,
+            'interest' => $loan->interest,
+            'weekly' => $loan->loan_amortization,
+        ]));
 
         session()->flash('success', 'User Successfully Approved');
 

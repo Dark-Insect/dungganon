@@ -8,6 +8,8 @@ use App\Http\Controllers\member\LoanController;
 use App\Http\Controllers\member\LoanBalanceController;
 use App\Http\Controllers\admin\LoanPaymentController;
 use App\Http\Controllers\admin\LoanListController;
+use App\Http\Controllers\admin\ClientSavingsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,6 +51,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Loan List
     Route::get('loan-lists',[LoanListController::class,'index'])->name('loan.lists');
+
+    // Savings
+    Route::get('savings',[ClientSavingsController::class,'index'])->name('savings.index');
+    Route::get('savings/account/{id}',[ClientSavingsController::class,'viewSaving'])->name('savings.account');
 });
 
 // MEMBER DASHBOARD

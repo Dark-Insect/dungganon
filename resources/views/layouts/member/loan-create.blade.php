@@ -108,16 +108,16 @@ button:hover {
                                 <select class="form-select" name="dtr_term" id="dtr_term">
                                   <option value="0.3">3 Months</option>
                                   <option value="0.6">6 Months</option>
-                                  <option value="1">1 Years</option>
-                                  <option value="2">2 Years</option>
-                                  <option value="3">3 Years</option>
+                                  <option value="0.9">9 Months</option>
+                                  <option value="1">Months</option>
+                                  {{-- <option value="3">3 Years</option>
                                   <option value="4">4 Years</option>
                                   <option value="5">5 Years</option>
                                   <option value="6">6 Years</option>
                                   <option value="7">7 Years</option>
                                   <option value="8">8 Years</option>
                                   <option value="9">9 Years</option>
-                                  <option value="10">10 Years</option>
+                                  <option value="10">10 Years</option> --}}
                                 </select>
                               </div>
                             </div>
