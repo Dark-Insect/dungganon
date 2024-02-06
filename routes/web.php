@@ -67,6 +67,12 @@ Route::prefix('member')->name('member.')->middleware('auth')->group(function () 
 
     // Loan Balance
     Route::get('/loan-balance/',[LoanBalanceController::class,'index'])->name('loan-balance-index');
+
+    // Loan Transaction
+    Route::get('loan-transaction/{id}', [LoanController::class,'viewLoan'])->name('loan-transaction');
+
+    Route::get('loan-current/', [LoanController::class,'viewCurrentlyPayment'])->name('loan-current');
+
 });
 
 Auth::routes();

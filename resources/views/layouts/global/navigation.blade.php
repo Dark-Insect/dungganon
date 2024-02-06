@@ -62,7 +62,7 @@
                                         <div class="sb-nav-link-icon"><i class="fas fa-wallet"></i></div>
                                         Loan Balance
                                     </a>
-                                    <a class="nav-link" href="{{ route('admin.member.create') }}">
+                                    <a class="nav-link" href="{{ route('member.loan-current') }}">
                                         <div class="sb-nav-link-icon"><i class="fas fa-file-invoice"></i></div>
                                         Currently Monthly Payments
                                     </a>
@@ -70,16 +70,16 @@
                             </div>
 
                             {{-- Email Notifications --}}
-                            <a class="nav-link" href="index.html">
+                            {{-- <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-bell"></i></div>
                                 Email Notifications
-                            </a>
+                            </a> --}}
 
                             {{-- Personal Information --}}
-                            <a class="nav-link" href="index.html">
+                            {{-- <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                                 Personal Information
-                            </a>
+                            </a> --}}
                         </div>
                     @endif
                     @if (auth()->user()->role === "admin")
@@ -137,10 +137,10 @@
                                         <div class="sb-nav-link-icon"><i class="fas fa-dollar"></i></div>
                                         Payments
                                     </a>
-                                    <a class="nav-link" href="{{ route('admin.savings.index') }}">
+                                    {{-- <a class="nav-link" href="{{ route('admin.savings.index') }}">
                                         <div class="sb-nav-link-icon"><i class="fas fa-bank"></i></div>
                                         Savings
-                                    </a>
+                                    </a> --}}
                                 </nav>
                             </div>
                         </div>

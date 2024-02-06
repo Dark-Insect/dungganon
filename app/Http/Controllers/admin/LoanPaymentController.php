@@ -24,7 +24,9 @@ class LoanPaymentController extends Controller
         ->where('user_id', $user_id)
         ->get();
 
-        return view('layouts.admin.loan-payments-user-loan-lists', compact('loans'));
+        $d = DB::table('users')->where('id', $user_id)->first();
+
+        return view('layouts.admin.loan-payments-user-loan-lists', compact('loans','d'));
     }
 
     public function viewLoan($loan_id)
@@ -52,20 +54,18 @@ class LoanPaymentController extends Controller
         $amount  = $reqeust['txt-amount'];
         $account = DB::table('account')->where('user_id', $user_id)->first();
 
+        $history = DB::table('account_history')->where('loan_id', $loan_id)->orderBy('history_id', 'desc')->first();
+
         if($amount >= $loan->loan_amortization)
         {
             // Check Balance
-            if($account->account_balance <= 0)
+            if($history->balance <= 0)
             {
                 session()->flash('success', 'User already fully paid!');
                 DB::table('loan_request')->where('loan_id', $loan_id)->update([
                     'loan_status' => "Fully Paid"
                 ]);
 
-                session()->flash('success', 'User is fully paid!');
-                DB::table('loan_request')->where('loan_id', $loan_id)->update([
-                    'loan_status' => "Fully Paid"
-                ]);
                 // Here goes the Notification
                 $user = User::findOrFail($user_id);
                 $result = Mail::to($user->email)->send(new LoanFullyPaidNotify([
@@ -75,7 +75,7 @@ class LoanPaymentController extends Controller
                 ]));
             }else{
                 // Get Balance
-                $balance = $account->account_balance - $loan->principal;
+                $balance = $history->balance - $loan->principal;
 
                 $balance = ($balance < 0) ? 0 : $balance;
 
@@ -99,7 +99,9 @@ class LoanPaymentController extends Controller
 
                 session()->flash('success', 'Successfully updated the record!');
 
-                if($account->account_balance <= 0)
+                // Check If Fully Paid
+
+                if($balance <= 0)
                 {
                     session()->flash('success', 'User is fully paid!');
                     DB::table('loan_request')->where('loan_id', $loan_id)->update([

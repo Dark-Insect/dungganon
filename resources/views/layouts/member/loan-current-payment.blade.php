@@ -10,24 +10,28 @@
         </div>
     @endif
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Loan</h1>
+        <h1 class="mt-4">Currently Weekly Payments</h1>
         <div class="card mb-4">
             <div class="card-body">
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
+                            <th>Loan Purpose</th>
                             <th>Loan Amount</th>
                             <th>Submitted Date</th>
                             <th>Status</th>
+                            <th>Loan Status</th>
                             <th>Documents</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
+                            <th>Loan Purpose</th>
                             <th>Loan Amount</th>
                             <th>Submitted Date</th>
                             <th>Status</th>
+                            <th>Loan Status</th>
                             <th>Documents</th>
                             <th>Action</th>
                         </tr>
@@ -37,9 +41,13 @@
                             @if ($datas)
                                 @foreach ($datas as $data)
                                     <tr>
-                                        <td>{{ $data->loan_amount }}</td>
+                                        <td>{{ $data->loan_purpose }}</td>
+                                        <td>₱{{ $data->loan_amount }}</td>
                                         <td>{{ \Carbon\Carbon::parse($data->loan_request_date)->format('F d Y, l') }}</td>
                                         <td>{{ $data->loan_approved }}</td>
+                                        <td>
+                                            {{ ($data->loan_status != "Fully Paid") ? "Currently Paying" : "Fully Paid" }}
+                                        </td>
                                         <td><a href="{{ asset('storage/uploads/' . $data->loan_uploaded_name) }}">View Document</a></td>
                                         <td>
                                             @if ($data->loan_approved != "pending")

@@ -10,8 +10,7 @@
         </div>
     @endif
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Test </h1>
-        {{ $loans }}
+        <h1 class="mt-4">{{ $d->first_name }}'s Loan Lists</h1>
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
@@ -48,7 +47,7 @@
                                             <td>{{ \Carbon\Carbon::parse($loan->loan_request_date)->format('F d Y, l') }}</td>
                                             <td>{{ $loan->loan_amount }}</td>
                                             <td>{{ $loan->loan_purpose }}</td>
-                                            <td>{{ $loan->loan_status }}</td>
+                                            <td>{{ ($loan->loan_status != "Fully Paid") ? "Currently Paying" : "Fully Paid" }}</td>
                                             <td>
                                                 <a href="{{ route('admin.loan', $loan->loan_id) }}">View Payment History</a>
                                             </td>

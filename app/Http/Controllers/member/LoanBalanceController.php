@@ -13,10 +13,24 @@ class LoanBalanceController extends Controller
     {
         $userID = auth()->id();
 
-        $balances = DB::table('account_history')
-        ->where('user_id', $userID)
-        ->get();
+        // $balances = DB::table('account_history')
+        // ->where('user_id', $userID)
+        // ->get();
 
-        return view('layouts.member.loan-balance',compact('balances'));
+        $loans = DB::table('loan_request')->where('user_id', $userID)->get();
+
+        $balances = [];
+        foreach($loans as $loan)
+        {
+            $left = DB::table('account_history')->where('loan_id', $loan->loan_id)->orderBy('history_id', 'desc')->first();
+
+            if(is_null($left))
+            {
+                array_push($balances, "Pending for Approval");
+            }else{
+                array_push($balances, $left->balance);
+            }
+        }
+        return view('layouts.member.loan-balance',compact('loans','balances'));
     }
 }

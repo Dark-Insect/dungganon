@@ -14,26 +14,46 @@
                             <th scope="col">#</th>
                             <th scope="col">Date</th>
                             <th scope="col">Loan ID</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Balance</th>
+                            <th scope="col">Loan Purpose</th>
+                            <th scope="col">Loan Amount</th>
+                            <th>Balance Left</th>
+                            <th>Loan Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @isset($balances)
+                        @isset($loans)
                             @php
                                 $count = 0;
                             @endphp
-                            @foreach ($balances as $balance)
+                            @foreach ($loans as $loan)
+                                <tr>
+                                    <td>{{ $count }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($loan->loan_request_date)->format('F d Y, l') }}</td>
+                                    <td>{{ $loan->loan_id }}</td>
+                                    <td>{{ $loan->loan_purpose }}</td>
+                                    <td>₱{{ $loan->loan_amount }}</td>
+                                    <td>
+                                        @isset($balances)
+                                            @if ($balances[$count] == "Pending for Approval")
+                                                {{ $balances[$count] }}
+                                            @else
+                                                {{ '₱'.$balances[$count] }}
+                                            @endif
+                                        @endisset
+                                    </td>
+                                    <td>
+                                        @isset($balances)
+                                            @if ($balances[$count] == "Pending for Approval")
+                                                {{ $balances[$count] }}
+                                            @else
+                                                {{ ($loan->loan_status != "Fully Paid") ? "Currently Paying" : "Fully Paid" }}
+                                            @endif
+                                        @endisset
+                                    </td>
+                                </tr>
                                 @php
                                     $count++;
                                 @endphp
-                                <tr>
-                                    <td>{{ $count }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($balance->date)->format('F d Y, l') }}</td>
-                                    <td>{{ $balance->loan_id }}</td>
-                                    <td>{{ $balance->amount_pay }}</td>
-                                    <td>{{ $balance->balance }}</td>
-                                </tr>
                             @endforeach
                         @endisset
                     </tbody>

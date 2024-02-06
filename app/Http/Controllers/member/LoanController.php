@@ -83,4 +83,28 @@ class LoanController extends Controller
             return view('layouts.member.loan-create');
         }
     }
+
+    public function viewLoan($loan_id)
+    {
+        $status = DB::table('loan_request')->where('loan_id', $loan_id)->first();
+        
+        $loans = DB::table('account_history')->where('loan_id', $loan_id)->get();
+        $loan = DB::table('loan_request')->where('loan_id', $loan_id)->first();
+        $user_id = $loans[0];
+
+        $loan_id = $loan_id;
+
+        return view('layouts.member.loan-history',compact('loans','user_id','loan_id','loan'));
+    }
+
+    public function viewCurrentlyPayment()
+    {
+        $userId = auth()->id();
+
+        $datas = DB::table('loan_request')
+        ->where('user_id', $userId)
+        ->get();
+
+        return view('layouts.member.loan-current-payment',compact('datas'));
+    }
 }
