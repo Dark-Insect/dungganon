@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
+use App\Mail\NewMemberNotifications as NewMemberNotification;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -61,6 +63,11 @@ class AdminController extends Controller
         ]);
 
         session()->flash('success', 'Successfully registered '. $fullname .' as a new member.');
+
+        // Notifacations
+        $result = Mail::to($data['txt_email'])->send(new NewMemberNotification([
+            'name' => $fullname,
+        ]));
 
         return view('layouts.admin.member-create');
     }

@@ -66,6 +66,10 @@
                                         <div class="sb-nav-link-icon"><i class="fas fa-file-invoice"></i></div>
                                         Currently Monthly Payments
                                     </a>
+                                    <a target="_blank" class="nav-link" href="{{ asset('files/Fillable-Loan-Proposal-Sheet.pdf') }}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
+                                        Loan Proposal Sheet
+                                    </a>
                                 </nav>
                             </div>
 
@@ -131,7 +135,10 @@
                                     </a>
                                     <a class="nav-link" href="{{ route('admin.loan-request.index') }}">
                                         <div class="sb-nav-link-icon"><i class="fas fa-bell"></i></div>
-                                        Borrowers
+                                        Borrowers 
+                                        @if ($count > 0)
+                                            <span class="badge badge-danger bg-danger" style="margin-left: 5px;">{{ $count }}</span>
+                                        @endif
                                     </a>
                                     <a class="nav-link" href="{{ route('admin.loan-payment-index') }}">
                                         <div class="sb-nav-link-icon"><i class="fas fa-dollar"></i></div>

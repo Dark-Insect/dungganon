@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Mail\LoanApproved as LoanApprovedNotifications;
+use App\Mail\DeclineLoanNotifications as DeclineLoanNotification;
 use Illuminate\Support\Facades\Mail;
 
 class LoanRequestController extends Controller
@@ -129,6 +130,15 @@ class LoanRequestController extends Controller
         ->update([
             'loan_approved' => 'declined'
         ]);
+
+        $loan = DB::table('loan_request')->where('loan_id', $id)->first();
+        $user = User::findOrFail($loan->user_id);
+
+        $result = Mail::to($user->email)->send(new DeclineLoanNotification([
+            'name' => $user->first_name . " " . $user->last_name,
+            'loan_amount' => $loan->loan_amount,
+            'loan_purpose' => $loan->loan_purpose
+        ]));
 
         session()->flash('danger', 'User Successfully Declined');
 
