@@ -94,7 +94,13 @@ button:hover {
                               </div>
                               <div class="form-group col-md-6">
                                 <label for="txt_type_loan">Loan Purpose</label>
-                                <input type="text" class="form-control" id="txt_purpose" name="txt_purpose">
+                                {{-- <input type="text" class="form-control" id="txt_purpose" name="txt_purpose"> --}}
+                                <select class="form-select" name="txt_purpose" id="txt_purpose">
+                                  <option value="Housing">Housing Loan</option>
+                                  <option value="Comfort Room">Comfort Room Loan</option>
+                                  <option value="Educational">Educational Loan</option>
+                                  <option value="General">General Loan</option>
+                                </select>
                               </div>
                             </div>
                             <div class="row mb-3">

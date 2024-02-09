@@ -51,11 +51,11 @@
                             <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="{{ route('member.loan.index') }}">
-                                        <div class="sb-nav-link-icon"><i class="fas fa-dollar"></i></div>
+                                        <div class="sb-nav-link-icon"><i class="fas fa-peso-sign"></i></div>
                                         Loan
                                     </a>
                                     <a class="nav-link" href="{{ route('member.loan.create') }}">
-                                        <div class="sb-nav-link-icon"><i class="fas fa-dollar"></i></div>
+                                        <div class="sb-nav-link-icon"><i class="fas fa-peso-sign"></i></div>
                                         New Loan
                                     </a>
                                     <a class="nav-link" href="{{ route('member.loan-balance-index') }}">
@@ -148,6 +148,10 @@
                                         <div class="sb-nav-link-icon"><i class="fas fa-bank"></i></div>
                                         Savings
                                     </a> --}}
+                                    <a target="_blank" class="nav-link" href="{{ asset('files/Fillable-Loan-Proposal-Sheet.pdf') }}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
+                                        Loan Proposal Sheet
+                                    </a>
                                 </nav>
                             </div>
                         </div>
