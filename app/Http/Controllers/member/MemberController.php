@@ -31,9 +31,10 @@ class MemberController extends Controller
 
         $userId = auth()->id();
         $user = DB::table('users')->where('id', $userId)->first();
-        $parts = explode(', ', $user->name);
-        $last = $parts[0];
-        $first = $parts[1];
+        // $parts = explode(', ', $user->name);
+        // $last = $parts[0];
+        // $first = $parts[1];
+        $first = $user->first_name;
         
         return view('email.MemberEmailViewTemplate',compact('first','date','setting'));
     }
