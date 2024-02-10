@@ -50,7 +50,7 @@ class MemberNotifications extends Command
                 $notify = false;
                 foreach($loans as $loan)
                 {
-                    if($loan->loan_status != "Fully Paid")
+                    if($loan->loan_status != "Fully Paid" && $loan->loan_approved == "approved")
                     {
                         $notify = true;
                         $this->info('Not Fully paid');
