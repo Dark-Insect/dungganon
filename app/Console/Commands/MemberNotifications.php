@@ -42,21 +42,21 @@ class MemberNotifications extends Command
             foreach ($users as $user) {
                 $email = $user->email;
 
-                $parts = explode(', ', $user->name);
-                $lastName = $parts[0];
-                $firstName = $parts[1];
+                // $parts = explode(', ', $user->first_name);
+                // $lastName = $parts[0];
+                // $firstName = $parts[1];
                 
                 try {
                     $result = Mail::to($email)->send(new MemberEmailTemplate([
-                        'name' => $firstName . " " . $lastName,
+                        'name' => $user->first_name . " " . $user->last_name,
                         'today' => $formattedDate,
                         'subject' => $setting->mail_subject,
                         'title' => $setting->mail_title
                     ]));
-                    $this->info('Email sent successfully to ' . $firstName);
+                    $this->info('Email sent successfully to ' . $user->first_name);
                 } catch (Exception $e) {
                     // Handle the exception
-                    $this->info('Email failed sending for ' . $firstName);
+                    $this->info('Email failed sending for ' . $user->first_name);
                 }
 
                 DB::table('sent_mail')->insert([
