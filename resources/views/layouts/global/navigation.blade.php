@@ -66,10 +66,10 @@
                                         <div class="sb-nav-link-icon"><i class="fas fa-file-invoice"></i></div>
                                         Currently Monthly Payments
                                     </a>
-                                    <a target="_blank" class="nav-link" href="{{ asset('files/Fillable-Loan-Proposal-Sheet.pdf') }}">
+                                    {{-- <a target="_blank" class="nav-link" href="{{ asset('files/Fillable-Loan-Proposal-Sheet.pdf') }}">
                                         <div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
                                         Loan Proposal Sheet
-                                    </a>
+                                    </a> --}}
                                 </nav>
                             </div>
 
@@ -124,15 +124,42 @@
                             {{-- Load Management --}}
                             <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="true" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-credit-card"></i></div>
+                                Loan Lists
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="{{ route('admin.loan.lists.general') }}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+                                        General Loan
+                                    </a>
+                                    <a class="nav-link" href="{{ route('admin.loan.lists.house') }}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-house"></i></div>
+                                        Housing Loan
+                                    </a>
+                                    <a class="nav-link" href="{{ route('admin.loan.lists.comfort') }}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-restroom"></i></div>
+                                        Comfort Room Loan
+                                    </a>
+                                    <a class="nav-link" href="{{ route('admin.loan.lists.educational') }}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-brain"></i></div>
+                                        Educational Loan
+                                    </a>
+                                </nav>
+                            </div>
+
+                            {{-- Load Management --}}
+                            <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="true" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-landmark"></i></div>
                                 Loan Management
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{{ route('admin.loan.lists') }}">
+                                    {{-- <a class="nav-link" href="{{ route('admin.loan.lists') }}">
                                         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                         Loan Lists
-                                    </a>
+                                    </a> --}}
                                     <a class="nav-link" href="{{ route('admin.loan-request.index') }}">
                                         <div class="sb-nav-link-icon"><i class="fas fa-bell"></i></div>
                                         Borrowers 
@@ -148,10 +175,10 @@
                                         <div class="sb-nav-link-icon"><i class="fas fa-bank"></i></div>
                                         Savings
                                     </a> --}}
-                                    <a target="_blank" class="nav-link" href="{{ asset('files/Fillable-Loan-Proposal-Sheet.pdf') }}">
+                                    {{-- <a target="_blank" class="nav-link" href="{{ asset('files/Fillable-Loan-Proposal-Sheet.pdf') }}">
                                         <div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
                                         Loan Proposal Sheet
-                                    </a>
+                                    </a> --}}
                                 </nav>
                             </div>
                         </div>

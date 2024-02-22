@@ -9,6 +9,7 @@ use App\Http\Controllers\member\LoanBalanceController;
 use App\Http\Controllers\admin\LoanPaymentController;
 use App\Http\Controllers\admin\LoanListController;
 use App\Http\Controllers\admin\ClientSavingsController;
+use App\Http\Controllers\admin\LoanTypeListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Loan List
     Route::get('loan-lists',[LoanListController::class,'index'])->name('loan.lists');
+
+    // Loan List Type
+    Route::get('loan-lists/general',[LoanTypeListController::class,'general'])->name('loan.lists.general');
+    Route::get('loan-lists/comfort',[LoanTypeListController::class,'comfort'])->name('loan.lists.comfort');
+    Route::get('loan-lists/house',[LoanTypeListController::class,'housing'])->name('loan.lists.house');
+    Route::get('loan-lists/educational',[LoanTypeListController::class,'educational'])->name('loan.lists.educational');
 
     // Savings
     Route::get('savings',[ClientSavingsController::class,'index'])->name('savings.index');

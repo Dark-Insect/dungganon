@@ -72,7 +72,8 @@
             </div>
         </div>
 
-        <h1 class="mt-4">Documents</h1>
+        {{-- Disable View File --}}
+        {{-- <h1 class="mt-4">Documents</h1>
         <p><a target="_blank" href="{{ asset('storage/uploads/' . $data->loan_uploaded_name) }}">View Full Size</a></p>
         <div class="card mb-4">
             <div class="card-body">
@@ -80,7 +81,7 @@
                 <iframe style="height: 80vh" class="w-100 embed-responsive-item" src="{{ asset('storage/uploads/' . $data->loan_uploaded_name) }}"></iframe>
               </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </main>
 @endsection

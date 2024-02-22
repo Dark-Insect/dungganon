@@ -23,7 +23,29 @@ class LoanController extends Controller
 
     public function create()
     {
-        return view('layouts.member.loan-create');
+        $userId = auth()->id();
+
+        $loans = DB::table('loan_request')
+        ->where('user_id', $userId)
+        ->get();
+
+        $check = false;
+
+        foreach($loans as $loan)
+        {
+            
+            if ($loan->loan_approved == "approved" && $loan->loan_status === null) {
+                $check = true;
+            }
+            // if(($loan->loan_approved == "approved") && ($loan->loan_status != "Fully Paid"))
+            // {
+            //     $check = true;
+            //     echo 
+            // }
+        }
+
+        // return $loans;
+        return view('layouts.member.loan-create', compact('check'));
     }
 
     public function LoanRequest(Request $request)
@@ -56,6 +78,26 @@ class LoanController extends Controller
         $interest = ($request['txt_loan_amount'] / $weeks) * $percent;
         $principal = ($request['txt_loan_amount'] / $weeks);
         $loan_amortization = $principal + $interest;
+
+        // Save
+
+        DB::table('loan_request')->insert([
+            'loan_amount' => $request['txt_loan_amount'],
+            'loan_purpose' => $request['txt_purpose'],
+            'loan_weekly_earn' => $request['txt_weekly_earnings'],
+            'loan_term' => $request['dtr_term'],
+            'loan_approved' => 'pending',
+            'user_id' => Auth::id(),
+            'loan_uploaded_name' => 'none',
+            'loan_request_date' => now()->format('Y-m-d H:i:s'),
+            'loan_amortization' => $loan_amortization,
+            'principal' => $principal,
+            'interest' => $interest
+        ]);
+        session()->flash('success', "Your loan application has been submitted! We typically take 3-5 business days to review all applications thoroughly. We'll let you know the outcome as soon as possible.");
+        return view('layouts.member.loan-index');
+
+        // Below will not be read
 
         if ($file->isValid()) {
             $uuid = Str::uuid()->toString();

@@ -79,201 +79,206 @@ button:hover {
         </div>
     @endif
     <div class="container">
+    
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="card shadow-lg border-0 rounded-lg mt-5 mb-5">
                     <div class="card-header"><h6 class="text-center font-weight-light my-1">New Loan</h6></div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('member.loan-request') }}" id="regForm" enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-                            <div class="row mb-3">
-                              <div class="form-group col-md-6">
-                                <label for="txt_type_loan">Loan Amount</label>
-                                <input type="number" class="form-control" id="txt_loan_amount" name="txt_loan_amount">
-                              </div>
-                              <div class="form-group col-md-6">
-                                <label for="txt_type_loan">Loan Purpose</label>
-                                {{-- <input type="text" class="form-control" id="txt_purpose" name="txt_purpose"> --}}
-                                <select class="form-select" name="txt_purpose" id="txt_purpose">
-                                  <option value="Housing">Housing Loan</option>
-                                  <option value="Comfort Room">Comfort Room Loan</option>
-                                  <option value="Educational">Educational Loan</option>
-                                  <option value="General">General Loan</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="row mb-3">
-                              <div class="form-group col-md-6">
-                                <label for="txt_type_loan">Weekly Earnings</label>
-                                <input type="number" class="form-control" id="txt_weekly_earnings" name="txt_weekly_earnings">
-                              </div>
-                              <div class="form-group col-md-6">
-                                <label for="txt_type_loan">Loan Term</label>
-                                {{-- <input type="date" class="form-control" id="dtr_term" name="dtr_term"> --}}
-                                <select class="form-select" name="dtr_term" id="dtr_term">
-                                  <option value="0.3">3 Months</option>
-                                  <option value="0.6">6 Months</option>
-                                  <option value="0.9">9 Months</option>
-                                  <option value="1">Months</option>
-                                  {{-- <option value="3">3 Years</option>
-                                  <option value="4">4 Years</option>
-                                  <option value="5">5 Years</option>
-                                  <option value="6">6 Years</option>
-                                  <option value="7">7 Years</option>
-                                  <option value="8">8 Years</option>
-                                  <option value="9">9 Years</option>
-                                  <option value="10">10 Years</option> --}}
-                                </select>
-                              </div>
-                            </div>
-                            <div class="row mb-3">
-                              <div class="form-group col-md-12">
-                                <label for="txt_type_loan">Upload Form</label>
-                                <input class="form-control" type="file" id="formFile" name="formFile">
-                              </div>
-                            </div>
-                            <div class="form-group mb-3">
-                              <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                            {{-- LOAN PROPOSAL SHEET --}}
-                            {{-- <div class="tab">
-                              <h3 class="h4 mb-5 text-center font-weight-bold">LOAN PROPOSAL SHEET</h3>
+                        @if ($check == true)
+                            <h4 class="h6 text-center">Sorry, you cannot apply for a loan because you have an active pending payment. Please complete the payment before applying for another loan.</h4>
+                        @else
+                            <form method="POST" action="{{ route('member.loan-request') }}" id="regForm" enctype="multipart/form-data">
+                              @csrf
+                              @method('PUT')
                               <div class="row mb-3">
                                 <div class="form-group col-md-6">
-                                  <label for="txt_type_loan">Kantidad nga Hulamon:</label>
-                                  <input type="number" class="form-control" id="txt_type_loan" name="txt_type_loan">
+                                  <label for="txt_type_loan">Loan Amount</label>
+                                  <input type="number" class="form-control" id="txt_loan_amount" name="txt_loan_amount" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                  <label for="txt_type_loan">Senimana nga Kita:</label>
-                                  <input type="number" class="form-control" id="txt_type_loan" name="txt_type_loan">
+                                  <label for="txt_type_loan">Loan Purpose</label>
+                                  {{-- <input type="text" class="form-control" id="txt_purpose" name="txt_purpose"> --}}
+                                  <select class="form-select" name="txt_purpose" id="txt_purpose">
+                                    <option value="Housing">Housing Loan</option>
+                                    <option value="Comfort Room">Comfort Room Loan</option>
+                                    <option value="Educational">Educational Loan</option>
+                                    <option value="General">General Loan</option>
+                                  </select>
                                 </div>
                               </div>
+                              <div class="row mb-3">
+                                <div class="form-group col-md-6">
+                                  <label for="txt_type_loan">Weekly Earnings</label>
+                                  <input type="number" class="form-control" id="txt_weekly_earnings" name="txt_weekly_earnings" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="txt_type_loan">Loan Term</label>
+                                  {{-- <input type="date" class="form-control" id="dtr_term" name="dtr_term"> --}}
+                                  <select class="form-select" name="dtr_term" id="dtr_term">
+                                    <option value="0.3">3 Months</option>
+                                    <option value="0.6">6 Months</option>
+                                    <option value="0.9">9 Months</option>
+                                    <option value="1">Months</option>
+                                    {{-- <option value="3">3 Years</option>
+                                    <option value="4">4 Years</option>
+                                    <option value="5">5 Years</option>
+                                    <option value="6">6 Years</option>
+                                    <option value="7">7 Years</option>
+                                    <option value="8">8 Years</option>
+                                    <option value="9">9 Years</option>
+                                    <option value="10">10 Years</option> --}}
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="row mb-3" style="display: none;">
+                                <div class="form-group col-md-12">
+                                  <label for="txt_type_loan">Upload Form</label>
+                                  <input class="form-control" type="file" id="formFile" name="formFile">
+                                </div>
+                              </div>
+                              <div class="form-group mb-3">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                              </div>
+                              {{-- LOAN PROPOSAL SHEET --}}
+                              {{-- <div class="tab">
+                                <h3 class="h4 mb-5 text-center font-weight-bold">LOAN PROPOSAL SHEET</h3>
+                                <div class="row mb-3">
+                                  <div class="form-group col-md-6">
+                                    <label for="txt_type_loan">Kantidad nga Hulamon:</label>
+                                    <input type="number" class="form-control" id="txt_type_loan" name="txt_type_loan">
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="txt_type_loan">Senimana nga Kita:</label>
+                                    <input type="number" class="form-control" id="txt_type_loan" name="txt_type_loan">
+                                  </div>
+                                </div>
 
-                              <div class="row mb-3">
-                                <div class="form-group col-md-6">
-                                  <label for="txt_type_loan">Katuyu-an sa Huwam:</label>
-                                  <input type="text" class="form-control" id="txt_type_loan" name="txt_type_loan">
+                                <div class="row mb-3">
+                                  <div class="form-group col-md-6">
+                                    <label for="txt_type_loan">Katuyu-an sa Huwam:</label>
+                                    <input type="text" class="form-control" id="txt_type_loan" name="txt_type_loan">
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="txt_type_loan">Long Term:</label>
+                                    <input type="text" class="form-control" id="txt_type_loan" name="txt_type_loan">
+                                  </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                  <label for="txt_type_loan">Long Term:</label>
-                                  <input type="text" class="form-control" id="txt_type_loan" name="txt_type_loan">
-                                </div>
-                              </div>
 
-                              <div class="row mb-3">
-                                <div class="form-group col-md-6">
-                                  <label for="txt_type_loan">Pirma sa Naghuwam: <span class="text-danger">( Please upload signature )</span></label>
+                                <div class="row mb-3">
+                                  <div class="form-group col-md-6">
+                                    <label for="txt_type_loan">Pirma sa Naghuwam: <span class="text-danger">( Please upload signature )</span></label>
+                                    <input class="form-control" type="file" id="formFile">
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="txt_type_loan">Ngalan ug pirma sa Bana: <span class="text-danger">( Please upload signature )</span></label>
+                                    <input class="form-control" type="file" id="formFile">
+                                  </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                  <label for="txt_reason">Katuyu-an sa Huwam</label>
+                                  <textarea class="form-control" id="txt_reason" rows="1" placeholder="Enter reason" name="txt_reason"></textarea>
+                                </div>
+                                <div class="form-group mb-3">
+                                  <label for="txt_reason">Ngalan ug Pirma sang GC:</label>
                                   <input class="form-control" type="file" id="formFile">
                                 </div>
-                                <div class="form-group col-md-6">
-                                  <label for="txt_type_loan">Ngalan ug pirma sa Bana: <span class="text-danger">( Please upload signature )</span></label>
+
+                                <div class="form-group mb-3">
+                                  <label for="txt_reason">Komentar ug Rekomendasyon nga kantidad sang Center Chief:</label>
+                                  <textarea class="form-control" id="txt_reason" rows="1" placeholder="Enter reason" name="txt_reason"></textarea>
+                                </div>
+                                <div class="form-group mb-3">
+                                  <label for="txt_reason">Ngalan ug Pirma sang GC:</label>
                                   <input class="form-control" type="file" id="formFile">
                                 </div>
+
+                                <div class="form-group mb-3">
+                                  <label for="txt_reason">Komentar ug Rekomendasyon nga kantidad sang LO:</label>
+                                  <textarea class="form-control" id="txt_reason" rows="1" placeholder="Enter reason" name="txt_reason"></textarea>
+                                </div>
+
                               </div>
 
-                              <div class="form-group mb-3">
-                                <label for="txt_reason">Katuyu-an sa Huwam</label>
-                                <textarea class="form-control" id="txt_reason" rows="1" placeholder="Enter reason" name="txt_reason"></textarea>
-                              </div>
-                              <div class="form-group mb-3">
-                                <label for="txt_reason">Ngalan ug Pirma sang GC:</label>
-                                <input class="form-control" type="file" id="formFile">
-                              </div>
+                              {{-- LOAN UTILIZATION CHECK FORM --}}
+                              {{-- <div class="tab">
+                                <h3 class="h4 mb-5 text-center font-weight-bold">LOAN UTILIZATION CHECK FORM</h3>
+                                <div class="row mb-3">
+                                  <div class="form-group col-md-6">
+                                    <label for="txt_type_loan">Ngalan sang Membro</label>
+                                    <input type="number" class="form-control" id="txt_type_loan" name="txt_type_loan">
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="txt_type_loan">Petsa sa pagdawt sa gihuwam</label>
+                                    <input type="number" class="form-control" id="txt_type_loan" name="txt_type_loan">
+                                  </div>
+                                </div>
 
-                              <div class="form-group mb-3">
-                                <label for="txt_reason">Komentar ug Rekomendasyon nga kantidad sang Center Chief:</label>
-                                <textarea class="form-control" id="txt_reason" rows="1" placeholder="Enter reason" name="txt_reason"></textarea>
-                              </div>
-                              <div class="form-group mb-3">
-                                <label for="txt_reason">Ngalan ug Pirma sang GC:</label>
-                                <input class="form-control" type="file" id="formFile">
-                              </div>
+                                <div class="row mb-3">
+                                  <div class="form-group col-md-6">
+                                    <label for="txt_type_loan">Numero sang Sentro/Grupo/Membro:</label>
+                                    <input type="number" class="form-control" id="txt_type_loan" name="txt_type_loan">
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="txt_type_loan">Negosyo nga nagamit sa gihuwam:</label>
+                                    <input type="number" class="form-control" id="txt_type_loan" name="txt_type_loan">
+                                  </div>
+                                </div>
 
-                              <div class="form-group mb-3">
-                                <label for="txt_reason">Komentar ug Rekomendasyon nga kantidad sang LO:</label>
-                                <textarea class="form-control" id="txt_reason" rows="1" placeholder="Enter reason" name="txt_reason"></textarea>
+                                <div class="form-group mb-3">
+                                  <label for="txt_reason">Katuyu-an sa Huwam</label>
+                                  <textarea class="form-control" id="txt_reason" rows="1" placeholder="Enter reason" name="txt_reason"></textarea>
+                                </div>
                               </div>
-
-                            </div>
-
-                            {{-- LOAN UTILIZATION CHECK FORM --}}
-                            {{-- <div class="tab">
-                              <h3 class="h4 mb-5 text-center font-weight-bold">LOAN UTILIZATION CHECK FORM</h3>
+                              <div style="overflow:auto;">
+                                <div style="float:right;">
+                                  <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                                  <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                                </div>
+                              </div>
+                              <div style="text-align:center;margin-top:40px;">
+                                <span class="step"></span>
+                                <span class="step"></span>
+                                <span class="step"></span>
+                                <span class="step"></span>
+                              </div> --}} 
+                              {{-- <div class="row mb-3">
+                                  <div class="form-group col-md-6">
+                                    <label for="txt_type_loan">Type of Loan</label>
+                                    <input type="text" class="form-control" id="txt_type_loan" placeholder="Enter type of loan" name="txt_type_loan">
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="txt_date">Date</label>
+                                    <input type="date" class="form-control" id="txt_date" placeholder="Enter date" name="txt_date" disabled  value="{{ now()->format('Y-m-d') }}">
+                                  </div>
+                              </div>
                               <div class="row mb-3">
-                                <div class="form-group col-md-6">
-                                  <label for="txt_type_loan">Ngalan sang Membro</label>
-                                  <input type="number" class="form-control" id="txt_type_loan" name="txt_type_loan">
-                                </div>
-                                <div class="form-group col-md-6">
-                                  <label for="txt_type_loan">Petsa sa pagdawt sa gihuwam</label>
-                                  <input type="number" class="form-control" id="txt_type_loan" name="txt_type_loan">
-                                </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="txt_amount_to_borrow">Kantidad nga Huwamon</label>
+                                    <input type="text" class="form-control" id="txt_amount_to_borrow" placeholder="Enter amount" name="txt_amount_to_borrow">
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="txt_weekly_income">Senimana nga Kita</label>
+                                    <input type="text" class="form-control" id="txt_weekly_income" placeholder="Enter amount" name="txt_weekly_income">
+                                  </div>
                               </div>
-
-                              <div class="row mb-3">
-                                <div class="form-group col-md-6">
-                                  <label for="txt_type_loan">Numero sang Sentro/Grupo/Membro:</label>
-                                  <input type="number" class="form-control" id="txt_type_loan" name="txt_type_loan">
-                                </div>
-                                <div class="form-group col-md-6">
-                                  <label for="txt_type_loan">Negosyo nga nagamit sa gihuwam:</label>
-                                  <input type="number" class="form-control" id="txt_type_loan" name="txt_type_loan">
-                                </div>
-                              </div>
-
                               <div class="form-group mb-3">
-                                <label for="txt_reason">Katuyu-an sa Huwam</label>
-                                <textarea class="form-control" id="txt_reason" rows="1" placeholder="Enter reason" name="txt_reason"></textarea>
+                                  <label for="txt_reason">Katuyu-an sa Huwam</label>
+                                  <textarea class="form-control" id="txt_reason" rows="1" placeholder="Enter reason" name="txt_reason"></textarea>
                               </div>
-                            </div>
-                            <div style="overflow:auto;">
-                              <div style="float:right;">
-                                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                                <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-                              </div>
-                            </div>
-                            <div style="text-align:center;margin-top:40px;">
-                              <span class="step"></span>
-                              <span class="step"></span>
-                              <span class="step"></span>
-                              <span class="step"></span>
-                            </div> --}} 
-                            {{-- <div class="row mb-3">
-                                <div class="form-group col-md-6">
-                                  <label for="txt_type_loan">Type of Loan</label>
-                                  <input type="text" class="form-control" id="txt_type_loan" placeholder="Enter type of loan" name="txt_type_loan">
-                                </div>
-                                <div class="form-group col-md-6">
-                                  <label for="txt_date">Date</label>
-                                  <input type="date" class="form-control" id="txt_date" placeholder="Enter date" name="txt_date" disabled  value="{{ now()->format('Y-m-d') }}">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="form-group col-md-6">
-                                  <label for="txt_amount_to_borrow">Kantidad nga Huwamon</label>
-                                  <input type="text" class="form-control" id="txt_amount_to_borrow" placeholder="Enter amount" name="txt_amount_to_borrow">
-                                </div>
-                                <div class="form-group col-md-6">
-                                  <label for="txt_weekly_income">Senimana nga Kita</label>
-                                  <input type="text" class="form-control" id="txt_weekly_income" placeholder="Enter amount" name="txt_weekly_income">
-                                </div>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="txt_reason">Katuyu-an sa Huwam</label>
-                                <textarea class="form-control" id="txt_reason" rows="1" placeholder="Enter reason" name="txt_reason"></textarea>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="form-group col-md-6">
-                                  <label for="txt_amount_to_borrow">Katuyu-an sa Huwam</label>
-                                  <input type="text" class="form-control" id="txt_amount_to_borrow" placeholder="Enter Amount" name="txt_amount_to_borrow">
-                                </div>
-                                <div class="form-group col-md-6">
-                                  <label for="txt_weekly_income">Senimana nga Kita</label>
-                                  <input type="text" class="form-control" id="txt_weekly_income" placeholder="Enter Amount">
-                                </div>
-                            </div> --}}
-                        </form>
+                              <div class="row mb-3">
+                                  <div class="form-group col-md-6">
+                                    <label for="txt_amount_to_borrow">Katuyu-an sa Huwam</label>
+                                    <input type="text" class="form-control" id="txt_amount_to_borrow" placeholder="Enter Amount" name="txt_amount_to_borrow">
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="txt_weekly_income">Senimana nga Kita</label>
+                                    <input type="text" class="form-control" id="txt_weekly_income" placeholder="Enter Amount">
+                                  </div>
+                              </div> --}}
+                          </form>
+                        @endif
                     </div>
                 </div>
             </div>
