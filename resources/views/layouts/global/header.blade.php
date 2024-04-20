@@ -16,7 +16,5 @@
 
 
 
-      <!-- {{-- TEMPLATE CSS --}}
-      @vite(['resources/css/template.css'])
-      @vite(['resources/css/app.css']) -->
+
   </head>

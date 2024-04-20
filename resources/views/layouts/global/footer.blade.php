@@ -18,9 +18,6 @@
 
 
 
-    <!-- {{-- Imported JS --}}
-    @vite(['resources/js/datatables-simple-demo.js'])
-    @vite(['resources/js/sidebar.js']) -->
 
   </body>
 </html>
