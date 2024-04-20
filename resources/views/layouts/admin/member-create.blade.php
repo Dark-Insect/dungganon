@@ -239,7 +239,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="form-group col-md-6">
+                                <!-- <div class="form-group col-md-6">
                                     <label for="txt_date">Total PPI Score</label>
                                     <input type="text" class="form-control" id="txt_total_ppi_score" placeholder="Enter Last name" name="txt_total_ppi_score" required>
                                     @error('txt_total_ppi_score')
@@ -248,7 +248,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="row mb-3">
                                 <label style="font-weight: bold;" for="txt_type_loan">Email & Password</label>

@@ -55,6 +55,7 @@ return new class extends Migration
             $table->boolean('is_active');
             $table->rememberToken();
             $table->timestamps();
+            $table->boolean('is_archived')->default(false);
         });
     }
 

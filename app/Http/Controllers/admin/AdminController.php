@@ -152,13 +152,38 @@ class AdminController extends Controller
     }
 
     public function destroy($id)
-    {
+    {   
         $user = User::findOrFail($id);
+        // Assuming you have a column named 'role' in your users table
+        $user->role = 'archive'; // Change 'user' to the desired role you want to update to
+        $user->save();
         $firstName = $user->first_name;
 
-        $user->delete();
-        session()->flash('deleted', "User $firstName successfully deleted.");
+        session()->flash('success', "User $firstName archive successfully!.");
 
         return redirect()->route('admin.member.index', compact('firstName'));
+
+
+        // $user = User::findOrFail($id);
+        // $firstName = $user->first_name;
+
+        // $user->delete();
+        // session()->flash('deleted', "User $firstName successfully deleted.");
+
+        // return redirect()->route('admin.member.index', compact('firstName'));
     }
+
+    // public function archive(Request $request, $id)
+    // {
+    //     $user = User::findOrFail($id);
+    //     // Assuming you have a column named 'role' in your users table
+    //     $user->role = 'user'; // Change 'user' to the desired role you want to update to
+    //     $user->save();
+    //     $firstName = $user->first_name;
+
+    //     session()->flash('updated', "Role of user $firstName successfully updated.");
+
+    //     return redirect()->route('admin.member.index', compact('firstName'));
+    // }
+
 }

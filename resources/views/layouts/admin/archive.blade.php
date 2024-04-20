@@ -1,16 +1,16 @@
 @extends('layouts.global.dashboard')
 
-@section('title', 'Members')
+@section('title', 'Archive Users')
 
 @section('content')
 <main>
-    @if (session('deleted'))
-        <div class="alert alert-danger text-center">
-            {{ session('deleted') }}
+    @if (session('archive'))
+        <div class="alert alert-success text-center">
+            {{ session('archive') }}
         </div>
     @endif
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Loan Requests</h1>
+        <h1 class="mt-4">Archived Users</h1>
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
@@ -22,7 +22,7 @@
                             <th>Full Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Actions</th>
+                            <!-- <th>Actions</th> -->
                         </tr>
                     </thead>
                     <tfoot>
@@ -30,25 +30,25 @@
                             <th>Full Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Actions</th>
+                            <!-- <th>Actions</th> -->
                         </tr>
                     </tfoot>
                     <tbody>
                         @isset($users)
                             @if ($users)
                                 @foreach ($users as $user)
-                                    @if ($user->role === 'member')
+                                    @if ($user->role === 'archive')
                                         <tr>
                                             <td>{{ $user->first_name . " " . $user->last_name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->phone }}</td>
-                                            <td style="display: flex;">
+                                            <!-- <td style="display: flex;">
                                                 <a class="btn btn-primary btn-sm" href="{{ route('admin.member.edit', $user->id) }}"><i class="fas fa-pen"></i></a>
-                                                <!-- <form action="{{ route('admin.member.update', $user->id) }}" method="post">
+                                                <form action="{{ route('admin.member.update', $user->id) }}" method="post">
                                             @csrf
                                             @method('PUT')
                                             <button type="submit" class="btn btn-secondary btn-sm"><i class="fas fa-box-archive"></i> Update Role</button>
-                                        </form> -->
+                                        </form>
 
 
                                                 <form action="{{ route('admin.member.destroy', $user->id) }}" method="post">
@@ -57,7 +57,7 @@
                                                     @method('DELETE')
                                                 </form>
                                                 {{-- <a class="btn btn-secondary btn-sm" href="{{ route('admin.member.delete', $user->id) }}"><i class="fas fa-trash"></i></a> --}}
-                                            </td>
+                                            </td> -->
                                         </tr>
                                     @endif 
                                 @endforeach

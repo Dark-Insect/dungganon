@@ -19,7 +19,7 @@
                             <th>Loan Amount</th>
                             <th>Submitted Date</th>
                             <th>Status</th>
-                            <th>Documents</th>
+                            <!-- <th>Documents</th> -->
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -28,7 +28,7 @@
                             <th>Loan Amount</th>
                             <th>Submitted Date</th>
                             <th>Status</th>
-                            <th>Documents</th>
+                            <!-- <th>Documents</th> -->
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -40,7 +40,7 @@
                                         <td>{{ $data->loan_amount }}</td>
                                         <td>{{ \Carbon\Carbon::parse($data->loan_request_date)->format('F d Y, l') }}</td>
                                         <td>{{ $data->loan_approved }}</td>
-                                        <td><a href="{{ asset('storage/uploads/' . $data->loan_uploaded_name) }}">View Document</a></td>
+                                        <!-- <td><a href="{{ asset('storage/uploads/' . $data->loan_uploaded_name) }}">View Document</a></td> -->
                                         <td>
                                             @if ($data->loan_approved != "pending")
                                                 <a href="{{ route('member.loan-transaction', $data->loan_id) }}">View Transactions</a>
