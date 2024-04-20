@@ -14,7 +14,9 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <script src="{{ asset('app.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('app.scss') }}">
+
 </head>
 <body>
     <div id="app" class="vh-100" style="background-image: url({{ asset('files/home-slider-img.png') }});background-size: cover; background-repeat: no-repeat;">
